@@ -1,13 +1,13 @@
 {
-    "name": "codebar-ag/laravel-docuware",
+    "name": "klongchu/laravel-docuware",
     "description": "DocuWare integration with Laravel",
     "keywords": [
         "laravel",
         "docuware",
-        "codebar-ag",
+        "klongchu",
         "laravel-docuware"
     ],
-    "homepage": "https://github.com/codebar-ag/laravel-docuware",
+    "homepage": "https://github.com/klongchu/laravel-docuware",
     "license": "MIT",
     "authors": [
         {
