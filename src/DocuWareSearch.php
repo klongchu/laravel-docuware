@@ -168,7 +168,7 @@ class DocuWareSearch
 
             $condition[] = [
                 'DBName' => $name,
-                'Value' => $value,
+                'Value' => [str_replace('"', '', ($value[0]))],
             ];
         }
 
