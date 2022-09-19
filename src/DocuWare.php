@@ -5,6 +5,7 @@ namespace CodebarAg\DocuWare;
 use Carbon\Carbon;
 use CodebarAg\DocuWare\DTO\Dialog;
 use CodebarAg\DocuWare\DTO\Document;
+use CodebarAg\DocuWare\DTO\Section;
 use CodebarAg\DocuWare\DTO\DocumentIndex;
 use CodebarAg\DocuWare\DTO\Field;
 use CodebarAg\DocuWare\DTO\FileCabinet;
@@ -371,5 +372,83 @@ class DocuWare
     public function url(): DocuWareUrl
     {
         return new DocuWareUrl();
+    }
+
+    public function getSections(
+        string $fileCabinetId,
+        int $documentId,
+    ): Section {
+        EnsureValidCookie::check();
+
+        $url = sprintf(
+            '%s/DocuWare/Platform/FileCabinets/%s/Sections?docid=%s',
+            config('docuware.credentials.url'),
+            $fileCabinetId,
+            $documentId,
+        );
+
+        $response = Http::acceptJson()
+            ->withCookies(Auth::cookies(), Auth::domain())
+            ->get($url);
+
+        event(new DocuWareResponseLog($response));
+
+        EnsureValidResponse::from($response);
+        $data = $response->throw()->json();
+        //dd(Section::fromJson($data['Section'][0]));
+        return Section::fromJson($data['Section'][0]);
+
+    }
+
+    public function getDocumentImage(
+        string $fileCabinetId,
+        string $documentId,
+        int $page,
+    ): string {
+        EnsureValidCookie::check();
+
+        $url = sprintf(
+            '%s/DocuWare/Platform/FileCabinets/%s/Rendering/%s/Image?page=%s&v=%s',
+            config('docuware.credentials.url'),
+            $fileCabinetId,
+            $documentId,
+            $page,
+            md5($documentId.''.$page),
+        );
+
+        $response = Http::acceptJson()
+            ->withCookies(Auth::cookies(), Auth::domain())
+            ->get($url);
+
+        event(new DocuWareResponseLog($response));
+
+        EnsureValidResponse::from($response);
+
+        return $response->throw()->body();
+
+    }
+
+    public function getDocumentThumbnail(
+        string $fileCabinetId,
+        int $documentId,
+    ): string {
+        EnsureValidCookie::check();
+
+        $url = sprintf(
+            '%s/DocuWare/Platform/FileCabinets/%s/Documents/%s/Thumbnail?v=0&annotations=False',
+            config('docuware.credentials.url'),
+            $fileCabinetId,
+            $documentId,
+        );
+
+        $response = Http::acceptJson()
+            ->withCookies(Auth::cookies(), Auth::domain())
+            ->get($url);
+
+        event(new DocuWareResponseLog($response));
+
+        EnsureValidResponse::from($response);
+
+        return $response->throw()->body();
     }
 }
