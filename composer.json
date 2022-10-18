@@ -4,15 +4,10 @@
     "keywords": [
         "laravel",
         "docuware",
-<<<<<<< HEAD
-        "klongchu",
-        "laravel-docuware"
-=======
         "codebar-ag",
         "laravel-docuware",
         "codebar Solutions AG",
         "Ricoh Schweiz AG"
->>>>>>> 4f38767c3799e4f799ee95a1cb8614e9e2c43c53
     ],
     "homepage": "https://github.com/klongchu/laravel-docuware",
     "license": "MIT",
