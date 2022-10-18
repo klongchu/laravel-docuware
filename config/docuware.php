@@ -4,6 +4,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Cache driver
+    |--------------------------------------------------------------------------
+    | You may like to define a different cache driver than the default Laravel cache driver.
+    |
+    */
+
+    'cache_driver' => env('DOCUWARE_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
+
+    /*
+   |--------------------------------------------------------------------------
+   | Cookies
+   |--------------------------------------------------------------------------
+   | This variable is optional and only used if you want to set the request cookie manually.
+   |
+   */
+
+    'cookies' => env('DOCUWARE_COOKIES'),
+
+    /*
+    |--------------------------------------------------------------------------
     | DocuWare Credentials
     |--------------------------------------------------------------------------
     |

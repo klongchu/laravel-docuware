@@ -8,55 +8,39 @@ use CodebarAg\DocuWare\DTO\DocumentField;
 use CodebarAg\DocuWare\DTO\DocumentPaginator;
 use CodebarAg\DocuWare\DTO\Field;
 use CodebarAg\DocuWare\DTO\FileCabinet;
-use CodebarAg\DocuWare\Tests\TestCase;
 
-class DTOTest extends TestCase
-{
-    /** @test */
-    public function it_does_create_a_fake_file_cabinet()
-    {
-        $fake = FileCabinet::fake();
+it(' create a fake file cabinet', function () {
+    $fake = FileCabinet::fake();
 
-        $this->assertInstanceOf(FileCabinet::class, $fake);
-    }
+    $this->assertInstanceOf(FileCabinet::class, $fake);
+})->group('dto');
 
-    /** @test */
-    public function it_does_create_a_fake_dialog()
-    {
-        $fake = Dialog::fake();
+it('create a fake dialog', function () {
+    $fake = Dialog::fake();
 
-        $this->assertInstanceOf(Dialog::class, $fake);
-    }
+    $this->assertInstanceOf(Dialog::class, $fake);
+})->group('dto');
 
-    /** @test */
-    public function it_does_create_a_fake_field()
-    {
-        $fake = Field::fake();
+it(' create a fake field', function () {
+    $fake = Field::fake();
 
-        $this->assertInstanceOf(Field::class, $fake);
-    }
+    $this->assertInstanceOf(Field::class, $fake);
+})->group('dto');
 
-    /** @test */
-    public function it_does_create_a_fake_document_field()
-    {
-        $fake = DocumentField::fake();
+it('create a fake document field', function () {
+    $fake = DocumentField::fake();
 
-        $this->assertInstanceOf(DocumentField::class, $fake);
-    }
+    $this->assertInstanceOf(DocumentField::class, $fake);
+})->group('dto');
 
-    /** @test */
-    public function it_does_create_a_fake_document()
-    {
-        $fake = Document::fake();
+it('create a fake document', function () {
+    $fake = Document::fake();
 
-        $this->assertInstanceOf(Document::class, $fake);
-    }
+    $this->assertInstanceOf(Document::class, $fake);
+})->group('dto');
 
-    /** @test */
-    public function it_does_create_a_fake_document_paginator()
-    {
-        $fake = DocumentPaginator::fake();
+it('create a fake document paginator', function () {
+    $fake = DocumentPaginator::fake();
 
-        $this->assertInstanceOf(DocumentPaginator::class, $fake);
-    }
-}
+    $this->assertInstanceOf(DocumentPaginator::class, $fake);
+})->group('dto');

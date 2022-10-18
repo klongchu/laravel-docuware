@@ -13,27 +13,34 @@ class Auth
 
     const CACHE_KEY = 'docuware.cookies';
 
+    const FALLBACK_CACHE_DRIVER = 'file';
+
     public static function store(CookieJar $cookies): void
     {
         $cookie = collect($cookies->toArray())
             ->reject(fn (array $cookie) => $cookie['Value'] === '')
             ->firstWhere('Name', self::COOKIE_NAME);
 
-        Cache::put(
-            self::CACHE_KEY,
-            [$cookie['Name'] => $cookie['Value']],
-            now()->addMinutes(config('docuware.cookie_lifetime')),
-        );
+        Cache::driver(self::cacheDriver())
+            ->put(
+                self::CACHE_KEY,
+                [$cookie['Name'] => $cookie['Value']],
+                now()->addMinutes(config('docuware.cookie_lifetime')),
+            );
     }
 
     public static function cookies(): ?array
     {
-        return Cache::get(self::CACHE_KEY);
+        if (config('docuware.cookies')) {
+            return [self::COOKIE_NAME => config('docuware.cookies')];
+        }
+
+        return Cache::driver(self::cacheDriver())->get(self::CACHE_KEY);
     }
 
     public static function forget(): void
     {
-        Cache::forget(self::CACHE_KEY);
+        Cache::driver(self::cacheDriver())->forget(self::CACHE_KEY);
     }
 
     public static function domain(): string
@@ -51,6 +58,11 @@ class Auth
 
     public static function check(): bool
     {
-        return Cache::has(self::CACHE_KEY);
+        return ! empty(config('docuware.cookies')) ?? Cache::driver(self::cacheDriver())->has(self::CACHE_KEY);
+    }
+
+    protected static function cacheDriver(): string
+    {
+        return config('docuware.cache_driver', self::FALLBACK_CACHE_DRIVER);
     }
 }
