@@ -5,10 +5,10 @@ namespace CodebarAg\DocuWare;
 use Carbon\Carbon;
 use CodebarAg\DocuWare\DTO\Dialog;
 use CodebarAg\DocuWare\DTO\Document;
-use CodebarAg\DocuWare\DTO\Section;
 use CodebarAg\DocuWare\DTO\DocumentIndex;
 use CodebarAg\DocuWare\DTO\Field;
 use CodebarAg\DocuWare\DTO\FileCabinet;
+use CodebarAg\DocuWare\DTO\Section;
 use CodebarAg\DocuWare\Events\DocuWareResponseLog;
 use CodebarAg\DocuWare\Exceptions\UnableToDownloadDocuments;
 use CodebarAg\DocuWare\Exceptions\UnableToLogin;
@@ -405,7 +405,6 @@ class DocuWare
         $data = $response->throw()->json();
         //dd(Section::fromJson($data['Section'][0]));
         return Section::fromJson($data['Section'][0]);
-
     }
 
     public function getDocumentImage(
@@ -433,7 +432,6 @@ class DocuWare
         EnsureValidResponse::from($response);
 
         return $response->throw()->body();
-
     }
 
     public function getDocumentThumbnail(
