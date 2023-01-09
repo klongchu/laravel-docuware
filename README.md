@@ -1,8 +1,8 @@
 <img src="https://banners.beyondco.de/Laravel%20DocuWare.png?theme=light&packageManager=composer+require&packageName=codebar-ag%2Flaravel-docuware&pattern=circuitBoard&style=style_1&description=An+opinionated+way+to+integrate+DocuWare+with+Laravel&md=1&showWatermark=0&fontSize=175px&images=document-report">
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/codebar-ag/laravel-docuware.svg?style=flat-square)](https://packagist.org/packages/codebar-ag/laravel-docuware)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/codebar-ag/laravel-docuware/run-tests?label=tests)](https://github.com/codebar-ag/laravel-docuware/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/codebar-ag/laravel-docuware/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/codebar-ag/laravel-docuware/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub-Tests](https://github.com/codebar-ag/laravel-docuware/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/codebar-ag/laravel-docuware/actions/workflows/run-tests.yml)
+[![GitHub Code Style](https://github.com/codebar-ag/laravel-docuware/actions/workflows/fix-php-code-style-issues.yml/badge.svg?branch=main)](https://github.com/codebar-ag/laravel-docuware/actions/workflows/fix-php-code-style-issues.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/codebar-ag/laravel-docuware.svg?style=flat-square)](https://packagist.org/packages/codebar-ag/laravel-docuware)
 
 This package was developed to give you a quick start to communicate with the
@@ -327,12 +327,11 @@ CodebarAg\DocuWare\DTO\Field {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\DocumentField {
-  +name: "FAKE_DOCUMENT_FIELD"  // string
-  +label: "Fake Document Field" // string
-  +value: 7680                  // integer
-  +type: "Int"                  // string
-}
+CodebarAg\DocuWare\DTO\Field {
+  +name: "FAKE_FIELD"  // string
+  +label: "Fake Field" // string
+  +type: "Memo"        // string
+  +scope: "User"       // string
 ```
 
 ```php
@@ -352,6 +351,16 @@ CodebarAg\DocuWare\DTO\Document {
       1 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
     ]
   }
+}
+```
+
+```php
+CodebarAg\DocuWare\DTO\TableRow {
+   +fields: Illuminate\Support\Collection {                 // Collection|DocumentField[]
+    #items: array:2 [
+      0 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
+      1 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
+    ]
 }
 ```
 
@@ -468,7 +477,7 @@ This is the contents of the published config file:
 
 return [
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Cache driver
     |--------------------------------------------------------------------------
@@ -477,8 +486,8 @@ return [
     */
 
     'cache_driver' => env('DOCUWARE_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
-    
-   /*
+
+    /*
    |--------------------------------------------------------------------------
    | Cookies
    |--------------------------------------------------------------------------
@@ -487,6 +496,7 @@ return [
    */
 
     'cookies' => env('DOCUWARE_COOKIES'),
+
     /*
     |--------------------------------------------------------------------------
     | DocuWare Credentials
@@ -530,6 +540,45 @@ return [
 
     'cookie_lifetime' => (int) env('DOCUWARE_COOKIE_LIFETIME', 525600),
 
+    /*
+   |--------------------------------------------------------------------------
+   | Configurations
+   |--------------------------------------------------------------------------
+   |
+   */
+    'configurations' => [
+        'search' => [
+            'operation' => 'And',
+
+            /*
+             * Force Refresh
+             * Determine if result list is retrieved from the cache when ForceRefresh is set
+             * to false (default) or always a new one is executed when ForceRefresh is set to true.
+             */
+
+            'force_refresh' => false,
+            'include_suggestions' => false,
+            'additional_result_fields' => [],
+        ],
+    ],
+    
+    /*
+     |--------------------------------------------------------------------------
+     | Tests
+     |--------------------------------------------------------------------------
+     |
+     */
+    'tests' => [
+        'file_cabinet_id' => env('DOCUWARE_TESTS_FILE_CABINET_ID'),
+        'dialog_id' => env('DOCUWARE_TESTS_DIALOG_ID'),
+        'basket_id' => env('DOCUWARE_TESTS_BASKET_ID'),
+        'document_id' => 1,
+        'document_file_size_preview' => (int)env('DOCUWARE_TESTS_DOCUMENT_FILE_SIZE_PREVIEW'),
+        'document_file_size' => (int)env('DOCUWARE_TESTS_DOCUMENT_FILE_SIZE'),
+        'document_ids' => [1, 2],
+        'documents_file_size' => (int)env('DOCUWARE_TESTS_DOCUMENTS_FILE_SIZE'),
+        'field_name' => env('DOCUWARE_TESTS_FIELD_NAME'),
+    ],
 ];
 ```
 
@@ -549,7 +598,16 @@ Modify environment variables in the phpunit.xml-file:
 <env name="DOCUWARE_USERNAME" value="user@domain.test"/>
 <env name="DOCUWARE_PASSWORD" value="password"/>
 <env name="DOCUWARE_PASSPHRASE" value="passphrase"/>
-<env name="DOCUWARE_COOKIE" value="cookie"/>
+<env name="DOCUWARE_COOKIES" value="cookies"/>
+
+<env name="DOCUWARE_TESTS_FILE_CABINET_ID" value=""/>
+<env name="DOCUWARE_TESTS_DIALOG_ID" value=""/>
+<env name="DOCUWARE_TESTS_BASKET_ID" value=""/>
+<env name="DOCUWARE_TESTS_FIELD_NAME" value="UUID"/>
+
+<env name="DOCUWARE_TESTS_DOCUMENT_FILE_SIZE_PREVIEW" value=""/>
+<env name="DOCUWARE_TESTS_DOCUMENT_FILE_SIZE" value=""/>
+<env name="DOCUWARE_TESTS_DOCUMENTS_FILE_SIZE" value=""/>
 ```
 
 Run the tests:
@@ -572,6 +630,7 @@ Please review [our security policy](.github/SECURITY.md) on how to report securi
 
 ## 🙏 Credits
 
+- [Sebastian Fix](https://github.com/StanBarrows)
 - [Ruslan Steiger](https://github.com/SuddenlyRust)
 - [All Contributors](../../contributors)
 - [Skeleton Repository from Spatie](https://github.com/spatie/package-skeleton-laravel)
