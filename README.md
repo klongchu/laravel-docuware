@@ -20,13 +20,20 @@ then optimize the processes that power the core of your business.
 
 ## 🛠 Requirements
 
-### > = v.1.2
+### > = v2.0
+
+- PHP: `^8.1` |`^8.2`
+- Laravel: `^9.*` | `^10.*`
+- DocuWare Cloud Access
+-
+
+### > = v1.2
 
 - PHP: `^8.1`
 - Laravel: `^9.*`
 - DocuWare Cloud Access
 
-### < v.1.2
+### < v1.2
 
 - PHP: `^8.0`
 - Laravel: `^8.*`
@@ -202,7 +209,7 @@ $paginator = DocuWare::search()
  */
 $paginator = DocuWare::search()
     ->fileCabinet($id)
-    ->dateFrom(Carbon::create(2021, 3, 1))
+    ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2021, 3, 1))
     ->get();
 
 /**
@@ -210,7 +217,7 @@ $paginator = DocuWare::search()
  */
 $paginator = DocuWare::search()
     ->fileCabinet($id)
-    ->dateUntil(Carbon::create(2021, 4, 1))
+    ->filterDate('DWSTOREDATETIME', '<', Carbon::create(2021, 4, 1))
     ->get();
 
 /**
@@ -248,8 +255,8 @@ $paginator = DocuWare::search()
     ->page(2)
     ->perPage(30)
     ->fulltext('My secret document')
-    ->dateFrom(Carbon::create(2021, 3, 1))
-    ->dateUntil(Carbon::create(2021, 4, 1))
+    ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2021, 3, 1))
+    ->filterDate('DWSTOREDATETIME','<',Carbon::create(2021, 4, 1))
     ->filter('TYPE', 'Order')
     ->filter('OTHER_FIELD', 'other')
     ->orderBy('DWSTOREDATETIME', 'desc')
@@ -391,6 +398,8 @@ You only need to provide correct credentials. Everything else is automatically
 handled from the package. Under the hood we are storing the authentication
 cookie in the cache named *docuware.cookies*.
 
+You can run `php artisan docuware:list-auth-cookie` command to get your auth session that you can use in your `.env` file `DOCUWARE_COOKIES` key.
+
 But if you need further control you can use the following methods to login and
 logout with DocuWare:
 
@@ -498,6 +507,16 @@ return [
     'cookies' => env('DOCUWARE_COOKIES'),
 
     /*
+   |--------------------------------------------------------------------------
+   | Requests timeout
+   |--------------------------------------------------------------------------
+   | This variable is optional and only used if you want to set the request timeout manually.
+   |
+   */
+
+    'timeout' => env('DOCUWARE_TIMEOUT', 30),
+
+    /*
     |--------------------------------------------------------------------------
     | DocuWare Credentials
     |--------------------------------------------------------------------------
@@ -572,11 +591,11 @@ return [
         'file_cabinet_id' => env('DOCUWARE_TESTS_FILE_CABINET_ID'),
         'dialog_id' => env('DOCUWARE_TESTS_DIALOG_ID'),
         'basket_id' => env('DOCUWARE_TESTS_BASKET_ID'),
-        'document_id' => 1,
-        'document_file_size_preview' => (int)env('DOCUWARE_TESTS_DOCUMENT_FILE_SIZE_PREVIEW'),
-        'document_file_size' => (int)env('DOCUWARE_TESTS_DOCUMENT_FILE_SIZE'),
-        'document_ids' => [1, 2],
-        'documents_file_size' => (int)env('DOCUWARE_TESTS_DOCUMENTS_FILE_SIZE'),
+        'document_id' => (int) env('DOCUWARE_TESTS_DOCUMENT_ID'),
+        'document_file_size_preview' => (int) env('DOCUWARE_TESTS_DOCUMENT_FILE_SIZE_PREVIEW'),
+        'document_file_size' => (int) env('DOCUWARE_TESTS_DOCUMENT_FILE_SIZE'),
+        'document_ids' => json_decode(env('DOCUWARE_TESTS_DOCUMENTS_IDS')),
+        'documents_file_size' => (int) env('DOCUWARE_TESTS_DOCUMENTS_FILE_SIZE'),
         'field_name' => env('DOCUWARE_TESTS_FIELD_NAME'),
     ],
 ];
@@ -599,6 +618,7 @@ Modify environment variables in the phpunit.xml-file:
 <env name="DOCUWARE_PASSWORD" value="password"/>
 <env name="DOCUWARE_PASSPHRASE" value="passphrase"/>
 <env name="DOCUWARE_COOKIES" value="cookies"/>
+<env name="DOCUWARE_TIMEOUT" value="30"/>
 
 <env name="DOCUWARE_TESTS_FILE_CABINET_ID" value=""/>
 <env name="DOCUWARE_TESTS_DIALOG_ID" value=""/>
@@ -608,6 +628,8 @@ Modify environment variables in the phpunit.xml-file:
 <env name="DOCUWARE_TESTS_DOCUMENT_FILE_SIZE_PREVIEW" value=""/>
 <env name="DOCUWARE_TESTS_DOCUMENT_FILE_SIZE" value=""/>
 <env name="DOCUWARE_TESTS_DOCUMENTS_FILE_SIZE" value=""/>
+<env name="DOCUWARE_TESTS_DOCUMENT_ID" value=""/>
+<env name="DOCUWARE_TESTS_DOCUMENTS_IDS" value="[]"/>
 ```
 
 Run the tests:
@@ -631,6 +653,7 @@ Please review [our security policy](.github/SECURITY.md) on how to report securi
 ## 🙏 Credits
 
 - [Sebastian Fix](https://github.com/StanBarrows)
+- [Faissal Wahabali](https://github.com/faissaloux)
 - [Ruslan Steiger](https://github.com/SuddenlyRust)
 - [All Contributors](../../contributors)
 - [Skeleton Repository from Spatie](https://github.com/spatie/package-skeleton-laravel)

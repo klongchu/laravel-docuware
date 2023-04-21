@@ -38,6 +38,7 @@ class DocuWare
 
         $response = Http::asForm()
             ->acceptJson()
+            ->timeout(config('docuware.timeout'))
             ->post($url, [
                 'UserName' => config('docuware.credentials.username'),
                 'Password' => config('docuware.credentials.password'),
@@ -68,7 +69,9 @@ class DocuWare
             config('docuware.credentials.url'),
         );
 
-        $response = Http::withCookies(Auth::cookies(), Auth::domain())->get($url);
+        $response = Http::withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
+            ->get($url);
 
         event(new DocuWareResponseLog($response));
 
@@ -88,6 +91,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->get($url);
 
         event(new DocuWareResponseLog($response));
@@ -111,6 +115,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->get($url);
 
         event(new DocuWareResponseLog($response));
@@ -134,6 +139,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->get($url);
 
         event(new DocuWareResponseLog($response));
@@ -162,6 +168,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->get($url);
 
         event(new DocuWareResponseLog($response));
@@ -184,6 +191,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->get($url);
 
         event(new DocuWareResponseLog($response));
@@ -210,6 +218,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->get($url);
 
         event(new DocuWareResponseLog($response));
@@ -234,6 +243,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->get($url);
 
         event(new DocuWareResponseLog($response));
@@ -267,6 +277,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->get($url);
 
         event(new DocuWareResponseLog($response));
@@ -293,6 +304,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->put($url, [
                 'Field' => [
                     [
@@ -337,6 +349,7 @@ class DocuWare
 
         $response = $request->attach('file', $fileContent, $fileName)
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->post($url);
 
         event(new DocuWareResponseLog($response));
@@ -363,6 +376,7 @@ class DocuWare
 
         $response = Http::acceptJson()
             ->withCookies(Auth::cookies(), Auth::domain())
+            ->timeout(config('docuware.timeout'))
             ->delete($url);
 
         event(new DocuWareResponseLog($response));
