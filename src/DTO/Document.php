@@ -98,7 +98,7 @@ final class Document
         ?Carbon $updated_at = null,
         ?Collection $fields = null,
     ): self {
-        return new static(
+        return new self(
             id: $id ?? random_int(1, 999999),
             file_size: $file_size ?? random_int(1000, 999999),
             total_pages: $total_pages ?? random_int(1, 100),
