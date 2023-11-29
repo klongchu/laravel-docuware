@@ -23,9 +23,9 @@ class PostLogonRequest extends SoloRequest implements HasBody
         return [
             'UserName' => config('docuware.credentials.username'),
             'Password' => config('docuware.credentials.password'),
-            'RememberMe' => false,
-            'RedirectToMyselfInCaseOfError' => false,
-            'LicenseType' => null,
+            // 'RememberMe' => false,
+            // 'RedirectToMyselfInCaseOfError' => false,
+            // 'LicenseType' => null,
         ];
     }
 }
