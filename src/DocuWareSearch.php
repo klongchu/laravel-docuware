@@ -3,15 +3,15 @@
 namespace Klongchu\DocuWare;
 
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Klongchu\DocuWare\DTO\DocumentPaginator;
 use Klongchu\DocuWare\Events\DocuWareResponseLog;
 use Klongchu\DocuWare\Exceptions\UnableToSearch;
 use Klongchu\DocuWare\Support\Auth;
 use Klongchu\DocuWare\Support\EnsureValidCookie;
 use Klongchu\DocuWare\Support\EnsureValidResponse;
-use Exception;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 
 class DocuWareSearch
 {
