@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare\Requests\Dialogs;
+namespace Klongchu\DocuWare\Requests\Dialogs;
 
-use CodebarAg\DocuWare\Responses\Dialogs\GetDialogsResponse;
+use Klongchu\DocuWare\Responses\Dialogs\GetDialogsResponse;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;

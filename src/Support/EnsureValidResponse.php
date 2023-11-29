@@ -1,9 +1,9 @@
 <?php
 
-namespace CodebarAg\DocuWare\Support;
+namespace Klongchu\DocuWare\Support;
 
-use CodebarAg\DocuWare\Exceptions\UnableToMakeRequest;
-use CodebarAg\DocuWare\Exceptions\UnableToProcessRequest;
+use Klongchu\DocuWare\Exceptions\UnableToMakeRequest;
+use Klongchu\DocuWare\Exceptions\UnableToProcessRequest;
 use Illuminate\Http\Client\Response;
 use Saloon\Contracts\Response as SaloonContracts;
 use Saloon\Http\Response as SaloonResponse;

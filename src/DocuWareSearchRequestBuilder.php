@@ -1,10 +1,10 @@
 <?php
 
-namespace CodebarAg\DocuWare;
+namespace Klongchu\DocuWare;
 
 use Carbon\Carbon;
-use CodebarAg\DocuWare\Exceptions\UnableToSearch;
-use CodebarAg\DocuWare\Requests\Search\GetSearchRequest;
+use Klongchu\DocuWare\Exceptions\UnableToSearch;
+use Klongchu\DocuWare\Requests\Search\GetSearchRequest;
 use Illuminate\Support\Str;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;

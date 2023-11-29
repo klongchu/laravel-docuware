@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare\Requests\SelectList;
+namespace Klongchu\DocuWare\Requests\SelectList;
 
-use CodebarAg\DocuWare\Responses\SelectList\GetSelectListResponse;
+use Klongchu\DocuWare\Responses\SelectList\GetSelectListResponse;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;

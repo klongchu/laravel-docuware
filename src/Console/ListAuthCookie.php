@@ -1,9 +1,9 @@
 <?php
 
-namespace CodebarAg\DocuWare\Console;
+namespace Klongchu\DocuWare\Console;
 
-use CodebarAg\DocuWare\Facades\DocuWare;
-use CodebarAg\DocuWare\Support\Auth;
+use Klongchu\DocuWare\Facades\DocuWare;
+use Klongchu\DocuWare\Support\Auth;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 

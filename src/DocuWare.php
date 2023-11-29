@@ -1,12 +1,12 @@
 <?php
 
-namespace CodebarAg\DocuWare;
+namespace Klongchu\DocuWare;
 
-use CodebarAg\DocuWare\Events\DocuWareResponseLog;
-use CodebarAg\DocuWare\Requests\Auth\GetLogoffRequest;
-use CodebarAg\DocuWare\Support\Auth;
-use CodebarAg\DocuWare\Support\EnsureValidCookie;
-use CodebarAg\DocuWare\Support\EnsureValidCredentials;
+use Klongchu\DocuWare\Events\DocuWareResponseLog;
+use Klongchu\DocuWare\Requests\Auth\GetLogoffRequest;
+use Klongchu\DocuWare\Support\Auth;
+use Klongchu\DocuWare\Support\EnsureValidCookie;
+use Klongchu\DocuWare\Support\EnsureValidCredentials;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
 

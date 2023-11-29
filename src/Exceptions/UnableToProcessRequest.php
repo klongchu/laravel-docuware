@@ -1,6 +1,6 @@
 <?php
 
-namespace CodebarAg\DocuWare\Exceptions;
+namespace Klongchu\DocuWare\Exceptions;
 
 use Illuminate\Http\Client\Response;
 use RuntimeException;

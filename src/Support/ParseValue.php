@@ -1,9 +1,9 @@
 <?php
 
-namespace CodebarAg\DocuWare\Support;
+namespace Klongchu\DocuWare\Support;
 
 use Carbon\Carbon;
-use CodebarAg\DocuWare\DTO\TableRow;
+use Klongchu\DocuWare\DTO\TableRow;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;

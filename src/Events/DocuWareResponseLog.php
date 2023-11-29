@@ -1,6 +1,6 @@
 <?php
 
-namespace CodebarAg\DocuWare\Events;
+namespace Klongchu\DocuWare\Events;
 
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;

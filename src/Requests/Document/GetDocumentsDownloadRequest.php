@@ -1,9 +1,9 @@
 <?php
 
-namespace CodebarAg\DocuWare\Requests\Document;
+namespace Klongchu\DocuWare\Requests\Document;
 
-use CodebarAg\DocuWare\Exceptions\UnableToDownloadDocuments;
-use CodebarAg\DocuWare\Responses\Document\GetDocumentsDownloadResponse;
+use Klongchu\DocuWare\Exceptions\UnableToDownloadDocuments;
+use Klongchu\DocuWare\Responses\Document\GetDocumentsDownloadResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;

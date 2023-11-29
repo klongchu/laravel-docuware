@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare\Commands;
+namespace Klongchu\DocuWare\Commands;
 
-use CodebarAg\DocuWare\Support\Auth;
+use Klongchu\DocuWare\Support\Auth;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace CodebarAg\DocuWare\Responses\Search;
+namespace Klongchu\DocuWare\Responses\Search;
 
-use CodebarAg\DocuWare\DTO\DocumentPaginator;
-use CodebarAg\DocuWare\Events\DocuWareResponseLog;
-use CodebarAg\DocuWare\Support\EnsureValidResponse;
+use Klongchu\DocuWare\DTO\DocumentPaginator;
+use Klongchu\DocuWare\Events\DocuWareResponseLog;
+use Klongchu\DocuWare\Support\EnsureValidResponse;
 use Exception;
 use Saloon\Contracts\Response;
 

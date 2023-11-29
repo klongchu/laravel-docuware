@@ -1,9 +1,9 @@
 <?php
 
-namespace CodebarAg\DocuWare\DTO;
+namespace Klongchu\DocuWare\DTO;
 
 use Carbon\Carbon;
-use CodebarAg\DocuWare\Support\ParseValue;
+use Klongchu\DocuWare\Support\ParseValue;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
