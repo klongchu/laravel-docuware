@@ -133,7 +133,7 @@ final class Document
                 DocumentField::fake(),
                 DocumentField::fake(),
             ]),
-            suggestions: $suggestions ?? null
+            suggestions: $suggestions ?? []
         );
     }
 }

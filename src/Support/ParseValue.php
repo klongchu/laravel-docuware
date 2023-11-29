@@ -15,16 +15,16 @@ class ParseValue
         int|float|Carbon|string|Collection $default = null,
     ): null|int|float|Carbon|string|Collection {
         if (! $field || $field['IsNull']) {
-            return $default;
+            return '';
         }
 
         $item = Arr::get($field, 'Item');
         $itemElementName = Arr::get($field, 'ItemElementName');
 
         return match ($itemElementName) {
-            'Int' => (int) $item,
+            'Int' => (string) $item,
             'String' => (string) $item,
-            'Decimal' => (float) $item,
+            'Decimal' => (string) $item,
             'Date', 'DateTime' => self::date($item),
             'Keywords' => Arr::join($item['Keyword'], ', '),
             'Table' => self::table($item),
