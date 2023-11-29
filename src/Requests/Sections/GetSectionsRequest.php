@@ -2,8 +2,8 @@
 
 namespace Klongchu\DocuWare\Requests\Sections;
 
-use Klongchu\DocuWare\Responses\Sections\GetSectionsResponse;
 use Illuminate\Support\Facades\Cache;
+use Klongchu\DocuWare\Responses\Sections\GetSectionsResponse;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
 use Saloon\CachePlugin\Traits\HasCaching;

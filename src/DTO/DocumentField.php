@@ -3,9 +3,9 @@
 namespace Klongchu\DocuWare\DTO;
 
 use Carbon\Carbon;
-use Klongchu\DocuWare\Support\ParseValue;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Klongchu\DocuWare\Support\ParseValue;
 
 final class DocumentField
 {

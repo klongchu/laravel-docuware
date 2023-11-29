@@ -3,10 +3,10 @@
 namespace Klongchu\DocuWare\Support;
 
 use Carbon\Carbon;
-use Klongchu\DocuWare\DTO\TableRow;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Klongchu\DocuWare\DTO\TableRow;
 
 class ParseValue
 {

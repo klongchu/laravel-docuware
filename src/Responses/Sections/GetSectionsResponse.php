@@ -2,10 +2,10 @@
 
 namespace Klongchu\DocuWare\Responses\Sections;
 
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
+use Klongchu\DocuWare\Events\DocuWareResponseLog;
+use Klongchu\DocuWare\Support\EnsureValidResponse;
 use Saloon\Contracts\Response;
 
 final class GetSectionsResponse

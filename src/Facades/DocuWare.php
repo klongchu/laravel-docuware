@@ -3,6 +3,8 @@
 namespace Klongchu\DocuWare\Facades;
 
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Facade;
 use Klongchu\DocuWare\DocuWareSearchRequestBuilder;
 use Klongchu\DocuWare\DocuWareUrl;
 use Klongchu\DocuWare\DTO\Dialog;
@@ -12,8 +14,6 @@ use Klongchu\DocuWare\DTO\Field;
 use Klongchu\DocuWare\DTO\FileCabinet;
 use Klongchu\DocuWare\DTO\Organization;
 use Klongchu\DocuWare\DTO\OrganizationIndex;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Facade;
 
 /**
  * @see \Klongchu\DocuWare\DocuWare

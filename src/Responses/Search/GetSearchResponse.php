@@ -2,10 +2,10 @@
 
 namespace Klongchu\DocuWare\Responses\Search;
 
+use Exception;
 use Klongchu\DocuWare\DTO\DocumentPaginator;
 use Klongchu\DocuWare\Events\DocuWareResponseLog;
 use Klongchu\DocuWare\Support\EnsureValidResponse;
-use Exception;
 use Saloon\Contracts\Response;
 
 final class GetSearchResponse

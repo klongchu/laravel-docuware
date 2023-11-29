@@ -2,11 +2,11 @@
 
 namespace Klongchu\DocuWare\Responses\Fields;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Enumerable;
 use Klongchu\DocuWare\DTO\Field;
 use Klongchu\DocuWare\Events\DocuWareResponseLog;
 use Klongchu\DocuWare\Support\EnsureValidResponse;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Enumerable;
 use Saloon\Contracts\Response;
 
 final class GetFieldsResponse

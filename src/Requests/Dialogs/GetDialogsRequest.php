@@ -2,8 +2,8 @@
 
 namespace Klongchu\DocuWare\Requests\Dialogs;
 
-use Klongchu\DocuWare\Responses\Dialogs\GetDialogsResponse;
 use Illuminate\Support\Facades\Cache;
+use Klongchu\DocuWare\Responses\Dialogs\GetDialogsResponse;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
 use Saloon\CachePlugin\Traits\HasCaching;

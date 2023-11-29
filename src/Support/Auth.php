@@ -2,11 +2,11 @@
 
 namespace Klongchu\DocuWare\Support;
 
-use Klongchu\DocuWare\Exceptions\UnableToFindUrlCredential;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Klongchu\DocuWare\Exceptions\UnableToFindUrlCredential;
 
 class Auth
 {

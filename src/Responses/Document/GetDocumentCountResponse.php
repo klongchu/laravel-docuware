@@ -2,10 +2,10 @@
 
 namespace Klongchu\DocuWare\Responses\Document;
 
+use Illuminate\Support\Arr;
 use Klongchu\DocuWare\Events\DocuWareResponseLog;
 use Klongchu\DocuWare\Exceptions\UnableToGetDocumentCount;
 use Klongchu\DocuWare\Support\EnsureValidResponse;
-use Illuminate\Support\Arr;
 use Saloon\Contracts\Response;
 
 final class GetDocumentCountResponse

@@ -2,9 +2,9 @@
 
 namespace Klongchu\DocuWare\Requests\Document;
 
+use Illuminate\Support\Collection;
 use Klongchu\DocuWare\DTO\DocumentIndex;
 use Klongchu\DocuWare\Responses\Document\PostDocumentResponse;
-use Illuminate\Support\Collection;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Contracts\Response;
 use Saloon\Data\MultipartValue;
