@@ -3,6 +3,8 @@
 namespace Klongchu\DocuWare\Tests\Feature;
 
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Event;
 use Klongchu\DocuWare\DocuWare;
 use Klongchu\DocuWare\DTO\Document;
 use Klongchu\DocuWare\DTO\DocumentField;
@@ -10,8 +12,6 @@ use Klongchu\DocuWare\DTO\DocumentIndex;
 use Klongchu\DocuWare\DTO\DocumentPaginator;
 use Klongchu\DocuWare\Events\DocuWareResponseLog;
 use Klongchu\DocuWare\Exceptions\UnableToSearch;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Event;
 
 uses()->group('docuware');
 

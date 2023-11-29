@@ -2,8 +2,8 @@
 
 namespace Klongchu\DocuWare\Tests\Console;
 
-use Klongchu\DocuWare\Support\Auth;
 use Illuminate\Support\Arr;
+use Klongchu\DocuWare\Support\Auth;
 
 uses()->group('console');
 
