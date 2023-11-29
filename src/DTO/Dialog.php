@@ -5,16 +5,16 @@ namespace CodebarAg\DocuWare\DTO;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-class Dialog
+final class Dialog
 {
     public static function fromJson(array $data): self
     {
-        return new static(
-            id: $data['Id'],
-            type: $data['Type'],
-            label: $data['DisplayName'],
-            isDefault: $data['IsDefault'],
-            fileCabinetId: $data['FileCabinetId'],
+        return new self(
+            id: Arr::get($data, 'Id'),
+            type: Arr::get($data, 'Type'),
+            label: Arr::get($data, 'DisplayName'),
+            isDefault: Arr::get($data, 'IsDefault'),
+            fileCabinetId: Arr::get($data, 'FileCabinetId'),
         );
     }
 
@@ -33,13 +33,13 @@ class Dialog
     }
 
     public static function fake(
-        ?string $id = null,
-        ?string $type = null,
-        ?string $label = null,
-        ?bool $isDefault = null,
-        ?string $fileCabinetId = null,
+        string $id = null,
+        string $type = null,
+        string $label = null,
+        bool $isDefault = null,
+        string $fileCabinetId = null,
     ): self {
-        return new static(
+        return new self(
             id: $id ?? (string) Str::uuid(),
             type: $type ?? Arr::random(['Search', 'Store', 'ResultList', 'InfoDialog']),
             label: $label ?? 'Fake Dialog',

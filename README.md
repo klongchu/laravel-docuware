@@ -1,8 +1,8 @@
 <img src="https://banners.beyondco.de/Laravel%20DocuWare.png?theme=light&packageManager=composer+require&packageName=codebar-ag%2Flaravel-docuware&pattern=circuitBoard&style=style_1&description=An+opinionated+way+to+integrate+DocuWare+with+Laravel&md=1&showWatermark=0&fontSize=175px&images=document-report">
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/codebar-ag/laravel-docuware.svg?style=flat-square)](https://packagist.org/packages/codebar-ag/laravel-docuware)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/codebar-ag/laravel-docuware/run-tests?label=tests)](https://github.com/codebar-ag/laravel-docuware/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/codebar-ag/laravel-docuware/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/codebar-ag/laravel-docuware/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub-Tests](https://github.com/codebar-ag/laravel-docuware/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/codebar-ag/laravel-docuware/actions/workflows/run-tests.yml)
+[![GitHub Code Style](https://github.com/codebar-ag/laravel-docuware/actions/workflows/fix-php-code-style-issues.yml/badge.svg?branch=main)](https://github.com/codebar-ag/laravel-docuware/actions/workflows/fix-php-code-style-issues.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/codebar-ag/laravel-docuware.svg?style=flat-square)](https://packagist.org/packages/codebar-ag/laravel-docuware)
 
 This package was developed to give you a quick start to communicate with the
@@ -20,13 +20,26 @@ then optimize the processes that power the core of your business.
 
 ## 🛠 Requirements
 
-### > = v.1.2
+### > = v3.0
+
+- PHP: `^8.2``
+- Laravel: `^10.*`
+- DocuWare Cloud Access
+
+### > = v2.0
+
+- PHP: `^8.1` |`^8.2`
+- Laravel: `^9.*` | `^10.*`
+- DocuWare Cloud Access
+-
+
+### > = v1.2
 
 - PHP: `^8.1`
 - Laravel: `^9.*`
 - DocuWare Cloud Access
 
-### < v.1.2
+### < v1.2
 
 - PHP: `^8.0`
 - Laravel: `^8.*`
@@ -66,57 +79,103 @@ DOCUWARE_PASSPHRASE="a#bcd>2~C1'abc\\#"
 ## 🏗 Usage
 
 ```php
-use CodebarAg\DocuWare\Facades\DocuWare;
+use CodebarAg\DocuWare\Connectors\DocuWareWithoutCookieConnector;
+
+// Will use user credentials to authenticate and store cookie in cache
+$connector = new DocuWareWithoutCookieConnector();
+
+// OR
+
+// Will use the cookie provided
+$connector = new DocuWareWithCookieConnector($cookie);
+
+/**
+ * Return an organization.
+ */
+$organization = $connector->send(new GetOrganizationRequest($id))->dto();
+
+/**
+ * Return all organizations.
+ */
+$organizations = $connector->send(new GetOrganizationsRequest())->dto();
 
 /**
  * Return all file cabinets.
  */
-$cabinets = DocuWare::getFileCabinets();
+$fileCabinets = $connector->send(new GetCabinetsRequest())->dto();
 
 /**
  * Return all fields of a file cabinet.
  */
-$fields = DocuWare::getFields($fileCabinetId);
+$fields = $connector->send(new GetFieldsRequest($fileCabinetId))->dto();
 
 /**
  * Return all dialogs of a file cabinet.
  */
-$dialogs = DocuWare::getDialogs($fileCabinetId);
+$dialogs = $connector->send(new GetDialogsRequest($fileCabinetId))->dto();
 
 /**
  * Return all used values for a specific field.
  */
-$values = DocuWare::getSelectList($fileCabinetId, $dialogId, $fieldName);
+$values = $connector->send(new GetSelectListRequest($fileCabinetId, $dialogId, $fieldName))->dto();
 
 /**
  * Return a document.
  */
-$document = DocuWare::getDocument($fileCabinetId, $documentId);
+$document = $connector->send(new GetDocumentRequest($fileCabinetId, $documentId))->dto();
+
+/**
+ * Return all documents for a file cabinet.
+ */
+$documents = $connector->send(new GetDocumentRequest($fileCabinetId))->dto();
 
 /**
  * Return image preview of a document.
  */
-$content = DocuWare::getDocumentPreview($fileCabinetId, $documentId);
+$content = $connector->send(new GetDocumentPreviewRequest($fileCabinetId, $documentId))->dto();
 
 /**
  * Download single document.
  */
-$content = DocuWare::downloadDocument($fileCabinetId, $documentId);
+$content = $connector->send(new GetDocumentDownloadRequest($fileCabinetId, $documentId))->dto();
 
 /**
  * Download multiple documents.
+ * 
+ * Although there are no mentioned limits in the documentation,
+ * it is not advisable to download more than 100 documents at once.
+ * 
+ * Also note there is a default request timeout of 30 seconds.
  */
-$content = DocuWare::downloadDocuments($fileCabinetId, $documentIds);
+$content = $connector->send(new GetDocumentsDownloadRequest($fileCabinetId, $documentIds))->dto();
+
+/**
+ * Download a document thumbnail.
+ */
+$thumbnail = $connector->send(new GetDocumentDownloadThumbnailRequest($fileCabinetId, $documentId, $section))->dto();
 
 /**
  * Update value of a indexed field.
  */
-$value = DocuWare::updateDocumentValue($fileCabinetId, $documentId, $fieldName, $newValue);
+$value = $connector->send(new PutDocumentFieldsRequest($fileCabinetId, $documentId, [$fieldName => $newValue]))->dto()[$fieldName];
+
+/**
+ * Update multiple values of indexed fields.
+ */
+$values = $connector->send(new PutDocumentFieldsRequest($fileCabinetId, $documentId, [
+    $fieldName => $newValue,
+    $field2Name => $new2Value,
+]))->dto();
 
 /**
  * Upload new document.
  */
-$document = DocuWare::uploadDocument($fileCabinetId, $fileContent, $fileName);
+$document = $connector->send(new PostDocumentRequest($fileCabinetId, $fileContent, $fileName))->dto();
+
+/**
+ * Get total document count.
+ */
+$content = $connector->send(new GetDocumentCountRequest($fileCabinetId, $dialogId))->dto();
 
 /**
  * Upload new document with index values.
@@ -128,33 +187,38 @@ $indexes = collect([
     DocumentIndex::make('DOCUMENT_NUMBER', 42),
 ]);
 
-$document = DocuWare::uploadDocument(
+$document = $connector->send(new PostDocumentRequest(
     $fileCabinetId,
     $fileContent,
     $fileName,
     $indexes,
-);
+))->dto();
 
 /**
  * Delete document.
  */
-DocuWare::deleteDocument($fileCabinetId, $documentId);
+$connector->send(new DeleteDocumentRequest($fileCabinetId, $document->id))->dto();
 ```
 
 ## 🔍 Search usage
 
 ```php
 use CodebarAg\DocuWare\Facades\DocuWare;
+use CodebarAg\DocuWare\Connectors\DocuWareWithoutCookieConnector;
+
+$connector = new DocuWareWithoutCookieConnector();
 
 /**
  * Most basic example to search for documents. You only need to provide a valid
  * file cabinet id.
  */
-$id = '87356f8d-e50c-450b-909c-4eaccd318fbf';
+$fileCabinetId = '87356f8d-e50c-450b-909c-4eaccd318fbf';
 
-$paginator = DocuWare::search()
-    ->fileCabinet($id)
+$paginatorRequest = DocuWare::searchRequestBuilder()
+    ->fileCabinet($fileCabinetId)
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
 
 /**
  * Search in multiple file cabinets. Provide an array of file cabinet ids.
@@ -164,97 +228,117 @@ $fileCabinetIds = [
     '3f9cb4ff-82f2-44dc-b439-dd648269064f',
 ];
 
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinets($fileCabinetIds)
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
 
 /**
  * Find results on the next page. 
  * 
  * Default: 1
  */
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
     ->page(2)
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
     
 /**
  * Define the number of results which should be shown per page.
  * 
  * Default: 50
  */
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
     ->perPage(30)
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
 
 /**
  * Use the full-text search. You have to activate full-text search in your file
  * cabinet before you can use this feature.
  */
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
     ->fulltext('My secret document')
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
 
 /**
  * Search documents which are created from the first of march.
  */
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
-    ->dateFrom(Carbon::create(2021, 3, 1))
+    ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2021, 3, 1))
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
 
 /**
  * Search documents which are created until the first of april.
  */
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
-    ->dateUntil(Carbon::create(2021, 4, 1))
+    ->filterDate('DWSTOREDATETIME', '<', Carbon::create(2021, 4, 1))
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
 
 /**
  * Order the results by field name. Supported values: 'asc', 'desc'
  */
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
     ->orderBy('DWSTOREDATETIME', 'desc')
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
 
 /**
  * Search documents filtered to the value. You can specify multiple filters.
  */
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
     ->filter('TYPE', 'Order')
     ->filter('OTHER_FIELD', 'other')
     ->get();
+    
+$paginator = $connector->send($paginatorRequest)->dto();
     
 /**
  * You can specify the dialog which should be used.
  */
 $dialogId = 'bb42c30a-89fc-4b81-9091-d7e326caba62';
 
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
     ->dialog($dialogId)
     ->get();
     
+$paginator = $connector->send($paginatorRequest)->dto();
+    
 /**
  * You can also combine everything.
  */
-$paginator = DocuWare::search()
+$paginatorRequest = DocuWare::searchRequestBuilder()
     ->fileCabinet($id)
     ->page(2)
     ->perPage(30)
     ->fulltext('My secret document')
-    ->dateFrom(Carbon::create(2021, 3, 1))
-    ->dateUntil(Carbon::create(2021, 4, 1))
+    ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2021, 3, 1))
+    ->filterDate('DWSTOREDATETIME','<',Carbon::create(2021, 4, 1))
     ->filter('TYPE', 'Order')
     ->filter('OTHER_FIELD', 'other')
     ->orderBy('DWSTOREDATETIME', 'desc')
     ->dialog($dialogId)
     ->get();
+
+$paginator = $connector->send($paginatorRequest)->dto();
 ```
 
 ## 🖼 Make encrypted URL
@@ -299,6 +383,24 @@ Please see [Tests](tests/Feature/DocuWare.php) for more details.
 ## 🏋️ DTO showcase
 
 ```php
+CodebarAg\DocuWare\DTO\OrganizationIndex {
+  +id: "2f071481-095d-4363-abd9-29ef845a8b05"              // string
+  +name: "Fake File Cabinet"                               // string
+  +guid: "1334c006-f095-4ae7-892b-fe59282c8bed"            // string|null
+}
+```
+
+```php
+CodebarAg\DocuWare\DTO\Organization {
+  +id: "2f071481-095d-4363-abd9-29ef845a8b05"              // string
+  +name: "Fake File Cabinet"                               // string
+  +guid: "1334c006-f095-4ae7-892b-fe59282c8bed"            // string|null
+  +additionalInfo: []                                      // array
+  +configurationRights: []                                 // array
+}
+```
+
+```php
 CodebarAg\DocuWare\DTO\FileCabinet {
   +id: "2f071481-095d-4363-abd9-29ef845a8b05"              // string
   +name: "Fake File Cabinet"                               // string
@@ -327,12 +429,11 @@ CodebarAg\DocuWare\DTO\Field {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\DocumentField {
-  +name: "FAKE_DOCUMENT_FIELD"  // string
-  +label: "Fake Document Field" // string
-  +value: 7680                  // integer
-  +type: "Int"                  // string
-}
+CodebarAg\DocuWare\DTO\Field {
+  +name: "FAKE_FIELD"  // string
+  +label: "Fake Field" // string
+  +type: "Memo"        // string
+  +scope: "User"       // string
 ```
 
 ```php
@@ -352,6 +453,24 @@ CodebarAg\DocuWare\DTO\Document {
       1 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
     ]
   }
+}
+```
+
+```php
+CodebarAg\DocuWare\DTO\DocumentThumbnail {
+  +mime: "image/png"                                        // string
+  +data: "somedata"                                         // string
+  +base64: "data:image/png;base64,WXpJNWRGcFhVbWhrUjBVOQ==" // string
+}
+```
+
+```php
+CodebarAg\DocuWare\DTO\TableRow {
+   +fields: Illuminate\Support\Collection {                 // Collection|DocumentField[]
+    #items: array:2 [
+      0 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
+      1 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
+    ]
 }
 ```
 
@@ -382,6 +501,9 @@ You only need to provide correct credentials. Everything else is automatically
 handled from the package. Under the hood we are storing the authentication
 cookie in the cache named *docuware.cookies*.
 
+You can run `php artisan docuware:list-auth-cookie` command to get your auth session that you can use in your `.env`
+file `DOCUWARE_COOKIES` key.
+
 But if you need further control you can use the following methods to login and
 logout with DocuWare:
 
@@ -390,8 +512,8 @@ use CodebarAg\DocuWare\Facades\DocuWare;
 
 /**
  * Login with your credentials. You only need to login once. Afterwards the
- * authentication cookie is stored in the cache `docuware.cookies` and is
- * used for all further requests.
+ * authentication cookie is stored in the cache as `docuware.cookies` and
+ * is used for all further requests.
  */
 DocuWare::login();
 
@@ -400,6 +522,18 @@ DocuWare::login();
  */
 DocuWare::logout();
 ```
+
+### Manual authentication
+
+If you want to provide your own authentication cookie you can use the following connector
+to authenticate with the DocuWare REST API:
+
+```php
+use CodebarAg\DocuWare\Connectors\StaticCookieConnector;
+```
+
+
+
 
 ## 💥 Exceptions explained
 
@@ -423,6 +557,13 @@ match.
 
 ---
 
+- `CodebarAg\DocuWare\Exceptions\UnableToLoginNoCookies`
+
+This exception can only be thrown during the login if there was no cookies in
+the response from the api.
+
+---
+
 - `CodebarAg\DocuWare\Exceptions\UnableToFindPassphrase`
 
 This exception can only be thrown during the url making if the passphrase
@@ -433,6 +574,18 @@ could not be found.
 - `CodebarAg\DocuWare\Exceptions\UnableToMakeUrl`
 
 Something is wrong during the URL making.
+
+---
+
+- `CodebarAg\DocuWare\Exceptions\UnableToUpdateFields`
+
+No fields were supplied.
+
+---
+
+- `CodebarAg\DocuWare\Exceptions\UnableToGetDocumentCount`
+
+Something is wrong with the response from getting the document count.
 
 ---
 
@@ -467,8 +620,17 @@ This is the contents of the published config file:
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Connection
+    |--------------------------------------------------------------------------
+    | Select a connector to authenticate with. You can choose between: WITHOUT_COOKIE, STATIC_COOKIE
+    |
+    */
 
-  /*
+    'connection' => ConnectionEnum::WITHOUT_COOKIE,
+
+    /*
     |--------------------------------------------------------------------------
     | Cache driver
     |--------------------------------------------------------------------------
@@ -477,16 +639,27 @@ return [
     */
 
     'cache_driver' => env('DOCUWARE_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
-    
-   /*
-   |--------------------------------------------------------------------------
-   | Cookies
-   |--------------------------------------------------------------------------
-   | This variable is optional and only used if you want to set the request cookie manually.
-   |
-   */
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cookies
+    |--------------------------------------------------------------------------
+    | This variable is optional and only used if you want to set the request cookie manually.
+    |
+    */
 
     'cookies' => env('DOCUWARE_COOKIES'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Requests timeout
+    |--------------------------------------------------------------------------
+    | This variable is optional and only used if you want to set the request timeout manually.
+    |
+    */
+
+    'timeout' => env('DOCUWARE_TIMEOUT', 15),
+
     /*
     |--------------------------------------------------------------------------
     | DocuWare Credentials
@@ -530,6 +703,44 @@ return [
 
     'cookie_lifetime' => (int) env('DOCUWARE_COOKIE_LIFETIME', 525600),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Configurations
+    |--------------------------------------------------------------------------
+    |
+    */
+    'configurations' => [
+        'search' => [
+            'operation' => 'And',
+
+            /*
+             * Force Refresh
+             * Determine if result list is retrieved from the cache when ForceRefresh is set
+             * to false (default) or always a new one is executed when ForceRefresh is set to true.
+             */
+
+            'force_refresh' => false,
+            'include_suggestions' => false,
+            'additional_result_fields' => [],
+        ],
+        'cache' => [
+            'driver' => env('DOCUWARE_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
+            'lifetime_in_seconds' => env('DOCUWARE_CACHE_LIFETIME_IN_SECONDS', 60),
+        ],
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Tests
+    |--------------------------------------------------------------------------
+    |
+    */
+    'tests' => [
+        'file_cabinet_id' => env('DOCUWARE_TESTS_FILE_CABINET_ID'),
+        'dialog_id' => env('DOCUWARE_TESTS_DIALOG_ID'),
+        'basket_id' => env('DOCUWARE_TESTS_BASKET_ID'),
+        'organization_id' => env('DOCUWARE_TESTS_ORGANIZATION_ID'),
+    ],
 ];
 ```
 
@@ -549,7 +760,14 @@ Modify environment variables in the phpunit.xml-file:
 <env name="DOCUWARE_USERNAME" value="user@domain.test"/>
 <env name="DOCUWARE_PASSWORD" value="password"/>
 <env name="DOCUWARE_PASSPHRASE" value="passphrase"/>
-<env name="DOCUWARE_COOKIE" value="cookie"/>
+<env name="DOCUWARE_COOKIES" value="cookies"/>
+<env name="DOCUWARE_TIMEOUT" value="15"/>
+<env name="DOCUWARE_CACHE_LIFETIME_IN_SECONDS" value="0"/> // Disable caching for tests
+
+<env name="DOCUWARE_TESTS_FILE_CABINET_ID" value=""/>
+<env name="DOCUWARE_TESTS_DIALOG_ID" value=""/>
+<env name="DOCUWARE_TESTS_BASKET_ID" value=""/>
+<env name="DOCUWARE_TESTS_ORGANIZATION_ID" value=""/>
 ```
 
 Run the tests:
@@ -572,7 +790,8 @@ Please review [our security policy](.github/SECURITY.md) on how to report securi
 
 ## 🙏 Credits
 
-- [Ruslan Steiger](https://github.com/SuddenlyRust)
+- [Sebastian Fix](https://github.com/StanBarrows)
+- [Rhys Lees](https://github.com/RhysLees)
 - [All Contributors](../../contributors)
 - [Skeleton Repository from Spatie](https://github.com/spatie/package-skeleton-laravel)
 - [Laravel Package Training from Spatie](https://spatie.be/videos/laravel-package-training)

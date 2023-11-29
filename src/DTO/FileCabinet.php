@@ -5,15 +5,15 @@ namespace CodebarAg\DocuWare\DTO;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-class FileCabinet
+final class FileCabinet
 {
     public static function fromJson(array $data): self
     {
-        return new static(
-            id: $data['Id'],
-            name: $data['Name'],
-            color: $data['Color'],
-            isBasket: $data['IsBasket'],
+        return new self(
+            id: Arr::get($data, 'Id'),
+            name: Arr::get($data, 'Name'),
+            color: Arr::get($data, 'Color'),
+            isBasket: Arr::get($data, 'IsBasket'),
             assignedCabinet: Arr::get($data, 'AssignedCabinetId'),
         );
     }
@@ -28,13 +28,13 @@ class FileCabinet
     }
 
     public static function fake(
-        ?string $id = null,
-        ?string $name = null,
-        ?string $color = null,
-        ?bool $isBasket = null,
-        ?string $assignedCabinet = null,
+        string $id = null,
+        string $name = null,
+        string $color = null,
+        bool $isBasket = null,
+        string $assignedCabinet = null,
     ): self {
-        return new static(
+        return new self(
             id: $id ?? (string) Str::uuid(),
             name: $name ?? 'Fake File Cabinet',
             color: $color ?? Arr::random(['Red', 'Blue', 'Black', 'Green', 'Yellow']),

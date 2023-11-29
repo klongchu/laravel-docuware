@@ -4,15 +4,15 @@ namespace CodebarAg\DocuWare\DTO;
 
 use Illuminate\Support\Arr;
 
-class Field
+final class Field
 {
     public static function fromJson(array $data): self
     {
-        return new static(
-            name: $data['DBFieldName'],
-            label: $data['DisplayName'],
-            type: $data['DWFieldType'],
-            scope: $data['Scope'],
+        return new self(
+            name: Arr::get($data, 'DBFieldName'),
+            label: Arr::get($data, 'DisplayName'),
+            type: Arr::get($data, 'DWFieldType'),
+            scope: Arr::get($data, 'Scope'),
         );
     }
 
@@ -35,12 +35,12 @@ class Field
     }
 
     public static function fake(
-        ?string $name = null,
-        ?string $label = null,
-        ?string $type = null,
-        ?string $scope = null,
+        string $name = null,
+        string $label = null,
+        string $type = null,
+        string $scope = null,
     ): self {
-        return new static(
+        return new self(
             name: $name ?? 'FAKE_FIELD',
             label: $label ?? 'Fake Field',
             type: Arr::random(['Text', 'Memo', 'Numeric', 'Decimal', 'Date', 'DateTime', 'Keyword']),
