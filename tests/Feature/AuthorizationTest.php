@@ -1,9 +1,9 @@
 <?php
 
-namespace CodebarAg\DocuWare\Tests\Feature;
+namespace Klongchu\DocuWare\Tests\Feature;
 
-use CodebarAg\DocuWare\DocuWare;
-use CodebarAg\DocuWare\Support\Auth;
+use Klongchu\DocuWare\DocuWare;
+use Klongchu\DocuWare\Support\Auth;
 
 uses()->group('authorization');
 

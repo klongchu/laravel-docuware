@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare\Tests\Console;
+namespace Klongchu\DocuWare\Tests\Console;
 
-use CodebarAg\DocuWare\Support\Auth;
+use Klongchu\DocuWare\Support\Auth;
 use Illuminate\Support\Arr;
 
 uses()->group('console');

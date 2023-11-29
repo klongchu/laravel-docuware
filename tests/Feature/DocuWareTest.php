@@ -1,15 +1,15 @@
 <?php
 
-namespace CodebarAg\DocuWare\Tests\Feature;
+namespace Klongchu\DocuWare\Tests\Feature;
 
 use Carbon\Carbon;
-use CodebarAg\DocuWare\DocuWare;
-use CodebarAg\DocuWare\DTO\Document;
-use CodebarAg\DocuWare\DTO\DocumentField;
-use CodebarAg\DocuWare\DTO\DocumentIndex;
-use CodebarAg\DocuWare\DTO\DocumentPaginator;
-use CodebarAg\DocuWare\Events\DocuWareResponseLog;
-use CodebarAg\DocuWare\Exceptions\UnableToSearch;
+use Klongchu\DocuWare\DocuWare;
+use Klongchu\DocuWare\DTO\Document;
+use Klongchu\DocuWare\DTO\DocumentField;
+use Klongchu\DocuWare\DTO\DocumentIndex;
+use Klongchu\DocuWare\DTO\DocumentPaginator;
+use Klongchu\DocuWare\Events\DocuWareResponseLog;
+use Klongchu\DocuWare\Exceptions\UnableToSearch;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Event;
 

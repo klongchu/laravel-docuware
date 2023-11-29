@@ -1,14 +1,14 @@
 <?php
 
-namespace CodebarAg\DocuWare\Tests\Feature;
+namespace Klongchu\DocuWare\Tests\Feature;
 
-use CodebarAg\DocuWare\DTO\Dialog;
-use CodebarAg\DocuWare\DTO\Document;
-use CodebarAg\DocuWare\DTO\DocumentField;
-use CodebarAg\DocuWare\DTO\DocumentPaginator;
-use CodebarAg\DocuWare\DTO\Field;
-use CodebarAg\DocuWare\DTO\FileCabinet;
-use CodebarAg\DocuWare\DTO\TableRow;
+use Klongchu\DocuWare\DTO\Dialog;
+use Klongchu\DocuWare\DTO\Document;
+use Klongchu\DocuWare\DTO\DocumentField;
+use Klongchu\DocuWare\DTO\DocumentPaginator;
+use Klongchu\DocuWare\DTO\Field;
+use Klongchu\DocuWare\DTO\FileCabinet;
+use Klongchu\DocuWare\DTO\TableRow;
 
 uses()->group('dto');
 

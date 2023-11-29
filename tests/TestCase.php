@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare\Tests;
+namespace Klongchu\DocuWare\Tests;
 
-use CodebarAg\DocuWare\DocuWareServiceProvider;
+use Klongchu\DocuWare\DocuWareServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 

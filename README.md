@@ -79,7 +79,7 @@ DOCUWARE_PASSPHRASE="a#bcd>2~C1'abc\\#"
 ## 🏗 Usage
 
 ```php
-use CodebarAg\DocuWare\Connectors\DocuWareWithoutCookieConnector;
+use Klongchu\DocuWare\Connectors\DocuWareWithoutCookieConnector;
 
 // Will use user credentials to authenticate and store cookie in cache
 $connector = new DocuWareWithoutCookieConnector();
@@ -180,7 +180,7 @@ $content = $connector->send(new GetDocumentCountRequest($fileCabinetId, $dialogI
 /**
  * Upload new document with index values.
  */
-use CodebarAg\DocuWare\DTO\DocumentIndex;
+use Klongchu\DocuWare\DTO\DocumentIndex;
  
 $indexes = collect([
     DocumentIndex::make('DOCUMENT_TEXT', 'Indexed Text'),
@@ -203,8 +203,8 @@ $connector->send(new DeleteDocumentRequest($fileCabinetId, $document->id))->dto(
 ## 🔍 Search usage
 
 ```php
-use CodebarAg\DocuWare\Facades\DocuWare;
-use CodebarAg\DocuWare\Connectors\DocuWareWithoutCookieConnector;
+use Klongchu\DocuWare\Facades\DocuWare;
+use Klongchu\DocuWare\Connectors\DocuWareWithoutCookieConnector;
 
 $connector = new DocuWareWithoutCookieConnector();
 
@@ -344,7 +344,7 @@ $paginator = $connector->send($paginatorRequest)->dto();
 ## 🖼 Make encrypted URL
 
 ```php
-use CodebarAg\DocuWare\Facades\DocuWare;
+use Klongchu\DocuWare\Facades\DocuWare;
 
 /**
  * Make encrypted URL for a document in a file cabinet.
@@ -383,7 +383,7 @@ Please see [Tests](tests/Feature/DocuWare.php) for more details.
 ## 🏋️ DTO showcase
 
 ```php
-CodebarAg\DocuWare\DTO\OrganizationIndex {
+Klongchu\DocuWare\DTO\OrganizationIndex {
   +id: "2f071481-095d-4363-abd9-29ef845a8b05"              // string
   +name: "Fake File Cabinet"                               // string
   +guid: "1334c006-f095-4ae7-892b-fe59282c8bed"            // string|null
@@ -391,7 +391,7 @@ CodebarAg\DocuWare\DTO\OrganizationIndex {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\Organization {
+Klongchu\DocuWare\DTO\Organization {
   +id: "2f071481-095d-4363-abd9-29ef845a8b05"              // string
   +name: "Fake File Cabinet"                               // string
   +guid: "1334c006-f095-4ae7-892b-fe59282c8bed"            // string|null
@@ -401,7 +401,7 @@ CodebarAg\DocuWare\DTO\Organization {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\FileCabinet {
+Klongchu\DocuWare\DTO\FileCabinet {
   +id: "2f071481-095d-4363-abd9-29ef845a8b05"              // string
   +name: "Fake File Cabinet"                               // string
   +color: "Yellow"                                         // string
@@ -411,7 +411,7 @@ CodebarAg\DocuWare\DTO\FileCabinet {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\Dialog {
+Klongchu\DocuWare\DTO\Dialog {
   +id: "fae3b667-53e9-48dd-9004-34647a26112e"            // string
   +type: "ResultList"                                    // string
   +label: "Fake Dialog"                                  // string
@@ -421,7 +421,7 @@ CodebarAg\DocuWare\DTO\Dialog {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\Field {
+Klongchu\DocuWare\DTO\Field {
   +name: "FAKE_FIELD"  // string
   +label: "Fake Field" // string
   +type: "Memo"        // string
@@ -429,7 +429,7 @@ CodebarAg\DocuWare\DTO\Field {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\Field {
+Klongchu\DocuWare\DTO\Field {
   +name: "FAKE_FIELD"  // string
   +label: "Fake Field" // string
   +type: "Memo"        // string
@@ -437,7 +437,7 @@ CodebarAg\DocuWare\DTO\Field {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\Document {
+Klongchu\DocuWare\DTO\Document {
   +id: 659732                                              // integer
   +file_size: 765336                                       // integer
   +total_pages: 100                                        // integer
@@ -449,15 +449,15 @@ CodebarAg\DocuWare\DTO\Document {
   +updated_at: Illuminate\Support\Carbon                   // Carbon
   +fields: Illuminate\Support\Collection {                 // Collection|DocumentField[]
     #items: array:2 [
-      0 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
-      1 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
+      0 => Klongchu\DocuWare\DTO\DocumentField            // DocumentField
+      1 => Klongchu\DocuWare\DTO\DocumentField            // DocumentField
     ]
   }
 }
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\DocumentThumbnail {
+Klongchu\DocuWare\DTO\DocumentThumbnail {
   +mime: "image/png"                                        // string
   +data: "somedata"                                         // string
   +base64: "data:image/png;base64,WXpJNWRGcFhVbWhrUjBVOQ==" // string
@@ -465,17 +465,17 @@ CodebarAg\DocuWare\DTO\DocumentThumbnail {
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\TableRow {
+Klongchu\DocuWare\DTO\TableRow {
    +fields: Illuminate\Support\Collection {                 // Collection|DocumentField[]
     #items: array:2 [
-      0 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
-      1 => CodebarAg\DocuWare\DTO\DocumentField            // DocumentField
+      0 => Klongchu\DocuWare\DTO\DocumentField            // DocumentField
+      1 => Klongchu\DocuWare\DTO\DocumentField            // DocumentField
     ]
 }
 ```
 
 ```php
-CodebarAg\DocuWare\DTO\DocumentPaginator
+Klongchu\DocuWare\DTO\DocumentPaginator
   +total: 39                                  // integer
   +per_page: 10                               // integer
   +current_page: 9                            // integer
@@ -484,11 +484,11 @@ CodebarAg\DocuWare\DTO\DocumentPaginator
   +to: 10                                     // integer
   +documents: Illuminate\Support\Collection { // Collection|Document[]
     #items: array:2 [
-      0 => CodebarAg\DocuWare\DTO\Document    // Document
-      1 => CodebarAg\DocuWare\DTO\Document    // Document
+      0 => Klongchu\DocuWare\DTO\Document    // Document
+      1 => Klongchu\DocuWare\DTO\Document    // Document
     ]
   }
-  +error: CodebarAg\DocuWare\DTO\ErrorBag {   // ErrorBag|null
+  +error: Klongchu\DocuWare\DTO\ErrorBag {   // ErrorBag|null
     +code: 422                                // int
     +message: "'000' is not valid cabinet id" // string
   }
@@ -508,7 +508,7 @@ But if you need further control you can use the following methods to login and
 logout with DocuWare:
 
 ```php
-use CodebarAg\DocuWare\Facades\DocuWare;
+use Klongchu\DocuWare\Facades\DocuWare;
 
 /**
  * Login with your credentials. You only need to login once. Afterwards the
@@ -529,7 +529,7 @@ If you want to provide your own authentication cookie you can use the following 
 to authenticate with the DocuWare REST API:
 
 ```php
-use CodebarAg\DocuWare\Connectors\StaticCookieConnector;
+use Klongchu\DocuWare\Connectors\StaticCookieConnector;
 ```
 
 
@@ -537,53 +537,53 @@ use CodebarAg\DocuWare\Connectors\StaticCookieConnector;
 
 ## 💥 Exceptions explained
 
-- `CodebarAg\DocuWare\Exceptions\UnableToMakeRequest`
+- `Klongchu\DocuWare\Exceptions\UnableToMakeRequest`
 
 This is thrown if you are not authorized to make the request.
 
 ---
 
-- `CodebarAg\DocuWare\Exceptions\UnableToProcessRequest`
+- `Klongchu\DocuWare\Exceptions\UnableToProcessRequest`
 
 This is thrown if you passed wrong attributes. For example a file cabinet ID
 which does not exist.
 
 ---
 
-- `CodebarAg\DocuWare\Exceptions\UnableToLogin`
+- `Klongchu\DocuWare\Exceptions\UnableToLogin`
 
 This exception can only be thrown during the login if the credentials did not
 match.
 
 ---
 
-- `CodebarAg\DocuWare\Exceptions\UnableToLoginNoCookies`
+- `Klongchu\DocuWare\Exceptions\UnableToLoginNoCookies`
 
 This exception can only be thrown during the login if there was no cookies in
 the response from the api.
 
 ---
 
-- `CodebarAg\DocuWare\Exceptions\UnableToFindPassphrase`
+- `Klongchu\DocuWare\Exceptions\UnableToFindPassphrase`
 
 This exception can only be thrown during the url making if the passphrase
 could not be found.
 
 ---
 
-- `CodebarAg\DocuWare\Exceptions\UnableToMakeUrl`
+- `Klongchu\DocuWare\Exceptions\UnableToMakeUrl`
 
 Something is wrong during the URL making.
 
 ---
 
-- `CodebarAg\DocuWare\Exceptions\UnableToUpdateFields`
+- `Klongchu\DocuWare\Exceptions\UnableToUpdateFields`
 
 No fields were supplied.
 
 ---
 
-- `CodebarAg\DocuWare\Exceptions\UnableToGetDocumentCount`
+- `Klongchu\DocuWare\Exceptions\UnableToGetDocumentCount`
 
 Something is wrong with the response from getting the document count.
 
@@ -598,7 +598,7 @@ All other cases if the response is not successfully.
 Following events will be fired:
 
 ```php 
-use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use Klongchu\DocuWare\Events\DocuWareResponseLog;
 
 // Log each response from the DocuWare REST API.
 DocuWareResponseLog::class => [
@@ -611,7 +611,7 @@ DocuWareResponseLog::class => [
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --provider="CodebarAg\DocuWare\DocuWareServiceProvider" --tag="docuware-config"
+php artisan vendor:publish --provider="Klongchu\DocuWare\DocuWareServiceProvider" --tag="docuware-config"
 ```
 
 This is the contents of the published config file:

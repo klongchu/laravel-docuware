@@ -1,8 +1,8 @@
 <?php
 
-use CodebarAg\DocuWare\DocuWare;
-use CodebarAg\DocuWare\Support\Auth;
-use CodebarAg\DocuWare\Tests\TestCase;
+use Klongchu\DocuWare\DocuWare;
+use Klongchu\DocuWare\Support\Auth;
+use Klongchu\DocuWare\Tests\TestCase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
