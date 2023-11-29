@@ -1,10 +1,10 @@
 <?php
 
-namespace Klongchu\DocuWare\Responses\Organization;
+namespace CodebarAg\DocuWare\Responses\Organization;
 
-use Klongchu\DocuWare\DTO\OrganizationIndex;
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
+use CodebarAg\DocuWare\DTO\OrganizationIndex;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Support\EnsureValidResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
 use Saloon\Contracts\Response;

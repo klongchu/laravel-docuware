@@ -9,10 +9,16 @@ use CodebarAg\DocuWare\DTO\DocumentField;
 use CodebarAg\DocuWare\DTO\DocumentIndex;
 use CodebarAg\DocuWare\DTO\DocumentPaginator;
 use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Exceptions\UnableToSearch;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Event;
 
-it('it_can_list_file_cabinets', function () {
+uses()->group('docuware');
+
+// fileCabinet = '4ca593b2-c19d-4399-96e6-c90168dbaa97';
+// dialog = '4fc78419-37f4-409b-ab08-42e5cecdee92';
+
+it('can list file cabinets', function () {
     Event::fake();
 
     $fileCabinets = (new DocuWare())->getFileCabinets();
@@ -20,26 +26,26 @@ it('it_can_list_file_cabinets', function () {
     $this->assertInstanceOf(Collection::class, $fileCabinets);
     $this->assertNotCount(0, $fileCabinets);
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_list_fields_for_a_file_cabinet', function () {
+it('can list fields for a file cabinet', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
 
     $fields = (new DocuWare())->getFields($fileCabinetId);
 
     $this->assertInstanceOf(Collection::class, $fields);
     $this->assertNotCount(0, $fields);
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_list_values_for_a_select_list', function () {
+it('can list values for a select list', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
-    $dialogId = 'adfa26ea-3148-4365-b71f-45a01f0e95a0';
-    $fieldName = 'DOCUMENT_TYPE';
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $dialogId = config('docuware.tests.dialog_id');
+    $fieldName = 'UUID';
 
     $types = (new DocuWare())->getSelectList(
         $fileCabinetId,
@@ -49,40 +55,40 @@ it('it_can_list_values_for_a_select_list', function () {
 
     $this->assertNotCount(0, $types);
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_list_dialogs_for_a_file_cabinet', function () {
+it('can list dialogs for a file cabinet', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
 
     $dialogs = (new DocuWare())->getDialogs($fileCabinetId);
 
     $this->assertInstanceOf(Collection::class, $dialogs);
     $this->assertNotCount(0, $dialogs);
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_preview_a_document_image', function () {
+it('can preview a document image', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
-    $documentId = 8;
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $documentId = config('docuware.tests.document_id');
 
     $image = (new DocuWare())->getDocumentPreview(
         $fileCabinetId,
         $documentId,
     );
 
-    $this->assertSame(2126, strlen($image));
+    $this->assertSame(config('docuware.tests.document_file_size_preview'), strlen($image));
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_show_a_document', function () {
+it('can show a document', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
-    $documentId = 8;
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $documentId = config('docuware.tests.document_id');
 
     $document = (new DocuWare())->getDocument(
         $fileCabinetId,
@@ -93,15 +99,15 @@ it('it_can_show_a_document', function () {
     $this->assertSame($documentId, $document->id);
     $this->assertSame($fileCabinetId, $document->file_cabinet_id);
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_update_a_document_value', function () {
+it('can update a document value', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
-    $documentId = 7;
-    $fieldName = 'DOCUMENT_LABEL';
-    $newValue = 'Der neue Inhalt!';
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $documentId = config('docuware.tests.document_id');
+    $fieldName = config('docuware.tests.field_name');
+    $newValue = 'laravel-docuware';
 
     $response = (new DocuWare())->updateDocumentValue(
         $fileCabinetId,
@@ -110,45 +116,45 @@ it('it_can_update_a_document_value', function () {
         $newValue,
     );
 
-    $this->assertSame('Der neue Inhalt!', $response);
+    $this->assertSame('laravel-docuware', $response);
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware', 'test');
+});
 
-it('it_can_download_multiple_documents', function () {
+it('can download multiple documents', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
-    $documentIds = [7, 8];
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $documentIds = config('docuware.tests.document_ids');
 
     $contents = (new DocuWare())->downloadDocuments(
         $fileCabinetId,
         $documentIds,
     );
 
-    $this->assertSame(3818, strlen($contents));
+    $this->assertSame(config('docuware.tests.documents_file_size'), strlen($contents));
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_download_a_document', function () {
+it('can download a document', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
-    $documentId = 8;
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $documentId = config('docuware.tests.document_id');
 
     $contents = (new DocuWare())->downloadDocument(
         $fileCabinetId,
         $documentId,
     );
 
-    $this->assertSame(4911, strlen($contents));
+    $this->assertSame(config('docuware.tests.document_file_size'), strlen($contents));
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_search_documents', function () {
+it('can search documents', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
-    $dialogId = '8f57d5d6-b11c-4b53-b2c6-335ea0bc8238';
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $dialogId = config('docuware.tests.dialog_id');
 
     $paginator = (new DocuWare())
         ->search()
@@ -157,20 +163,156 @@ it('it_can_search_documents', function () {
         ->page(1)
         ->perPage(5)
         ->fulltext('test')
-        ->dateFrom(Carbon::create(2021))
-        ->dateUntil(now())
+        ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2021))
+        ->filterDate('DWSTOREDATETIME', '<', now())
         ->filter('DOCUMENT_TYPE', 'Abrechnung')
         ->orderBy('DWSTOREDATETIME', 'desc')
         ->get();
 
     $this->assertInstanceOf(DocumentPaginator::class, $paginator);
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+})->group('search');
 
-it('it_can_upload_document_with_index_values_and_delete_it', function () {
+it('can\'t search documents by more than two dates', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $dialogId = config('docuware.tests.dialog_id');
+
+    $this->expectException(UnableToSearch::class);
+
+    (new DocuWare())
+        ->search()
+        ->fileCabinet($fileCabinetId)
+        ->dialog($dialogId)
+        ->page(1)
+        ->perPage(5)
+        ->fulltext('test')
+        ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2020))
+        ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2021))
+        ->filterDate('DWSTOREDATETIME', '<', now())
+        ->filter('DOCUMENT_TYPE', 'Abrechnung')
+        ->orderBy('DWSTOREDATETIME', 'desc')
+        ->get();
+})->group('search');
+
+it('can override search documents dates filter by using same operator', function () {
+    Event::fake();
+
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $dialogId = config('docuware.tests.dialog_id');
+
+    $paginator = (new DocuWare())
+        ->search()
+        ->fileCabinet($fileCabinetId)
+        ->dialog($dialogId)
+        ->page(1)
+        ->perPage(5)
+        ->fulltext('test')
+        ->filterDate('DWSTOREDATETIME', '<=', Carbon::create(2022))
+        ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2020))
+        ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2021))
+        ->filter('DOCUMENT_TYPE', 'Abrechnung')
+        ->orderBy('DWSTOREDATETIME', 'desc')
+        ->get();
+
+    $this->assertInstanceOf(DocumentPaginator::class, $paginator);
+    Event::assertDispatched(DocuWareResponseLog::class);
+})->group('search');
+
+it('can override search documents dates filter by using equal operator', function () {
+    Event::fake();
+
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $dialogId = config('docuware.tests.dialog_id');
+
+    $paginator = (new DocuWare())
+        ->search()
+        ->fileCabinet($fileCabinetId)
+        ->dialog($dialogId)
+        ->page(1)
+        ->perPage(5)
+        ->fulltext('test')
+        ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2020))
+        ->filterDate('DWSTOREDATETIME', '=', Carbon::create(2021))
+        ->filter('DOCUMENT_TYPE', 'Abrechnung')
+        ->orderBy('DWSTOREDATETIME', 'desc')
+        ->get();
+
+    $this->assertInstanceOf(DocumentPaginator::class, $paginator);
+    Event::assertDispatched(DocuWareResponseLog::class);
+})->group('search');
+
+it('can\'t search documents by diverged date range', function () {
+    Event::fake();
+
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $dialogId = config('docuware.tests.dialog_id');
+
+    $this->expectException(UnableToSearch::class);
+
+    (new DocuWare())
+        ->search()
+        ->fileCabinet($fileCabinetId)
+        ->dialog($dialogId)
+        ->page(1)
+        ->perPage(5)
+        ->fulltext('test')
+        ->filterDate('DWSTOREDATETIME', '<=', Carbon::create(2020))
+        ->filterDate('DWSTOREDATETIME', '>=', Carbon::create(2021))
+        ->filter('DOCUMENT_TYPE', 'Abrechnung')
+        ->orderBy('DWSTOREDATETIME', 'desc')
+        ->get();
+})->group('search');
+
+it('can search documents dates filter in future', function () {
+    Event::fake();
+
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $dialogId = config('docuware.tests.dialog_id');
+
+    $paginator = (new DocuWare())
+        ->search()
+        ->fileCabinet($fileCabinetId)
+        ->dialog($dialogId)
+        ->page(1)
+        ->perPage(5)
+        ->fulltext('test')
+        ->filterDate('DWSTOREDATETIME', '>', Carbon::create(2018))
+        ->filter('DOCUMENT_TYPE', 'Abrechnung')
+        ->orderBy('DWSTOREDATETIME', 'desc')
+        ->get();
+
+    $this->assertInstanceOf(DocumentPaginator::class, $paginator);
+    Event::assertDispatched(DocuWareResponseLog::class);
+})->group('search');
+
+it('can search documents dates filter in past', function () {
+    Event::fake();
+
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $dialogId = config('docuware.tests.dialog_id');
+
+    $paginator = (new DocuWare())
+        ->search()
+        ->fileCabinet($fileCabinetId)
+        ->dialog($dialogId)
+        ->page(1)
+        ->perPage(5)
+        ->fulltext('test')
+        ->filterDate('DWSTOREDATETIME', '<=', Carbon::create(2020))
+        ->filter('DOCUMENT_TYPE', 'Abrechnung')
+        ->orderBy('DWSTOREDATETIME', 'desc')
+        ->get();
+
+    $this->assertInstanceOf(DocumentPaginator::class, $paginator);
+    Event::assertDispatched(DocuWareResponseLog::class);
+})->group('search');
+
+it('can upload document with index values and delete it', function () {
+    Event::fake();
+
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $fileContent = '::fake-file-content::';
     $fileName = 'example.txt';
 
@@ -192,13 +334,13 @@ it('it_can_upload_document_with_index_values_and_delete_it', function () {
         $this->assertSame($field->value, '::text::');
     });
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+});
 
-it('it_can_create_encrypted_url_for_a_document_in_a_file_cabinet', function () {
+it('can create encrypted url for a document in a file cabinet', function () {
     Event::fake();
 
-    $fileCabinetId = '75c7cee7-ff04-475f-bc43-44b8ec3f7754';
-    $documentId = 7;
+    $fileCabinetId = config('docuware.tests.file_cabinet_id');
+    $documentId = config('docuware.tests.document_id');
 
     $url = (new DocuWare())
         ->url()
@@ -207,18 +349,22 @@ it('it_can_create_encrypted_url_for_a_document_in_a_file_cabinet', function () {
         ->validUntil(now()->addMinute())
         ->make();
 
+    $endpoint = sprintf(
+        '%s/DocuWare/Platform/WebClient/Integration?ep=',
+        config('docuware.credentials.url'),
+    );
+
     $this->assertStringStartsWith(
-        'https://vanta.docuware.cloud/DocuWare/Platform/WebClient/Integration?ep=',
+        $endpoint,
         $url,
     );
-})->group('docuware');
+});
 
-it('it_can_search_documents_with_null_values', function () {
+it('can search documents with null values', function () {
     Event::fake();
 
     $fileCabinetIds = [
-        '75c7cee7-ff04-475f-bc43-44b8ec3f7754',
-        '86a15ac1-ea58-4510-9905-6cb13c905a4f',
+        config('docuware.tests.file_cabinet_id'),
     ];
 
     $paginator = (new DocuWare())
@@ -227,21 +373,19 @@ it('it_can_search_documents_with_null_values', function () {
         ->page(null)
         ->perPage(null)
         ->fulltext(null)
-        ->dateFrom(null)
-        ->dateUntil(null)
         ->filter('DOCUMENT_TYPE', null)
         ->orderBy('DWSTOREDATETIME', null)
         ->get();
 
     $this->assertInstanceOf(DocumentPaginator::class, $paginator);
     Event::assertDispatched(DocuWareResponseLog::class);
-})->group('docuware');
+})->group('search');
 
-it('it_can_create_encrypted_url_for_a_document_in_a_basket', function () {
+it('can create encrypted url for a document in a basket', function () {
     Event::fake();
 
-    $basketId = 'b_8ae317d3-20cd-4097-b828-4825ce0e0403';
-    $documentId = 1;
+    $basketId = config('docuware.tests.basket_id');
+    $documentId = config('docuware.tests.document_id');
 
     $url = (new DocuWare())
         ->url()
@@ -250,8 +394,13 @@ it('it_can_create_encrypted_url_for_a_document_in_a_basket', function () {
         ->validUntil(now()->addMinute())
         ->make();
 
+    $endpoint = sprintf(
+        '%s/DocuWare/Platform/WebClient/Integration?ep=',
+        config('docuware.credentials.url'),
+    );
+
     $this->assertStringStartsWith(
-        'https://vanta.docuware.cloud/DocuWare/Platform/WebClient/Integration?ep=',
+        $endpoint,
         $url,
     );
-})->group('docuware');
+});

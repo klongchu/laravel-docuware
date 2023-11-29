@@ -1,10 +1,10 @@
 <?php
 
-namespace Klongchu\DocuWare\Responses\Document;
+namespace CodebarAg\DocuWare\Responses\Document;
 
-use Klongchu\DocuWare\DTO\Document;
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
+use CodebarAg\DocuWare\DTO\Document;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Support\EnsureValidResponse;
 use Saloon\Contracts\Response;
 
 final class PostDocumentResponse

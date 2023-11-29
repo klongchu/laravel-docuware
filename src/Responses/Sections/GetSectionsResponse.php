@@ -1,9 +1,9 @@
 <?php
 
-namespace Klongchu\DocuWare\Responses\Sections;
+namespace CodebarAg\DocuWare\Responses\Sections;
 
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Support\EnsureValidResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
 use Saloon\Contracts\Response;

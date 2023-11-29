@@ -1,8 +1,8 @@
 <?php
 
-namespace Klongchu\DocuWare\Requests\Document;
+namespace CodebarAg\DocuWare\Requests\Document;
 
-use Klongchu\DocuWare\Responses\Document\DeleteDocumentResponse;
+use CodebarAg\DocuWare\Responses\Document\DeleteDocumentResponse;
 use Saloon\Contracts\Response;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

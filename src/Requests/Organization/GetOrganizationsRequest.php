@@ -1,8 +1,8 @@
 <?php
 
-namespace Klongchu\DocuWare\Requests\Organization;
+namespace CodebarAg\DocuWare\Requests\Organization;
 
-use Klongchu\DocuWare\Responses\Organization\GetOrganizationsResponse;
+use CodebarAg\DocuWare\Responses\Organization\GetOrganizationsResponse;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;

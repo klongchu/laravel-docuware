@@ -1,8 +1,8 @@
 <?php
 
-namespace Klongchu\DocuWare\Requests\Auth;
+namespace CodebarAg\DocuWare\Requests\Auth;
 
-use Klongchu\DocuWare\Support\EnsureValidCookie;
+use CodebarAg\DocuWare\Support\EnsureValidCookie;
 use Saloon\Enums\Method;
 use Saloon\Http\SoloRequest;
 

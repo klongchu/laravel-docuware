@@ -1,8 +1,8 @@
 <?php
 
-namespace Klongchu\DocuWare\Connectors;
+namespace CodebarAg\DocuWare\Connectors;
 
-use Klongchu\DocuWare\Support\Auth;
+use CodebarAg\DocuWare\Support\Auth;
 use GuzzleHttp\Cookie\CookieJar;
 use Saloon\Http\Connector;
 

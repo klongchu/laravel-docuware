@@ -1,6 +1,6 @@
 <?php
 
-namespace Klongchu\DocuWare\Enums;
+namespace CodebarAg\DocuWare\Enums;
 
 enum ConnectionEnum: string
 {

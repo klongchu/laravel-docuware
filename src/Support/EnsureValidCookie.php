@@ -1,12 +1,12 @@
 <?php
 
-namespace Klongchu\DocuWare\Support;
+namespace CodebarAg\DocuWare\Support;
 
-use Klongchu\DocuWare\Events\DocuWareCookieCreatedLog;
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Exceptions\UnableToLogin;
-use Klongchu\DocuWare\Exceptions\UnableToLoginNoCookies;
-use Klongchu\DocuWare\Requests\Auth\PostLogonRequest;
+use CodebarAg\DocuWare\Events\DocuWareCookieCreatedLog;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Exceptions\UnableToLogin;
+use CodebarAg\DocuWare\Exceptions\UnableToLoginNoCookies;
+use CodebarAg\DocuWare\Requests\Auth\PostLogonRequest;
 use GuzzleHttp\Cookie\CookieJar;
 use Symfony\Component\HttpFoundation\Response;
 

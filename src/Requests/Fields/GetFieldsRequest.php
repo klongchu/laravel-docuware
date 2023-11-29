@@ -1,8 +1,8 @@
 <?php
 
-namespace Klongchu\DocuWare\Requests\Fields;
+namespace CodebarAg\DocuWare\Requests\Fields;
 
-use Klongchu\DocuWare\Responses\Fields\GetFieldsResponse;
+use CodebarAg\DocuWare\Responses\Fields\GetFieldsResponse;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;

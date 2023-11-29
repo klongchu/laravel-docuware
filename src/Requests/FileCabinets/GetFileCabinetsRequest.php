@@ -1,8 +1,8 @@
 <?php
 
-namespace Klongchu\DocuWare\Requests\FileCabinets;
+namespace CodebarAg\DocuWare\Requests\FileCabinets;
 
-use Klongchu\DocuWare\Responses\FileCabinets\GetFileCabinetsResponse;
+use CodebarAg\DocuWare\Responses\FileCabinets\GetFileCabinetsResponse;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;

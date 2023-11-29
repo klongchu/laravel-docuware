@@ -1,10 +1,10 @@
 <?php
 
-namespace Klongchu\DocuWare\Responses\Document;
+namespace CodebarAg\DocuWare\Responses\Document;
 
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Exceptions\UnableToGetDocumentCount;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Exceptions\UnableToGetDocumentCount;
+use CodebarAg\DocuWare\Support\EnsureValidResponse;
 use Illuminate\Support\Arr;
 use Saloon\Contracts\Response;
 

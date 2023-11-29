@@ -1,12 +1,12 @@
 <?php
 
-namespace Klongchu\DocuWare;
+namespace CodebarAg\DocuWare;
 
 use Carbon\Carbon;
-use Klongchu\DocuWare\Exceptions\UnableToMakeUrl;
-use Klongchu\DocuWare\Support\EnsureValidCredentials;
-use Klongchu\DocuWare\Support\EnsureValidPassphrase;
-use Klongchu\DocuWare\Support\URL;
+use CodebarAg\DocuWare\Exceptions\UnableToMakeUrl;
+use CodebarAg\DocuWare\Support\EnsureValidCredentials;
+use CodebarAg\DocuWare\Support\EnsureValidPassphrase;
+use CodebarAg\DocuWare\Support\URL;
 
 class DocuWareUrl
 {

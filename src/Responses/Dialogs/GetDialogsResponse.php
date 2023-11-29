@@ -1,10 +1,10 @@
 <?php
 
-namespace Klongchu\DocuWare\Responses\Dialogs;
+namespace CodebarAg\DocuWare\Responses\Dialogs;
 
-use Klongchu\DocuWare\DTO\Dialog;
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
+use CodebarAg\DocuWare\DTO\Dialog;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Support\EnsureValidResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
 use Saloon\Contracts\Response;

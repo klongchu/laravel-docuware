@@ -1,6 +1,6 @@
 <?php
 
-namespace Klongchu\DocuWare\Requests\Auth;
+namespace CodebarAg\DocuWare\Requests\Auth;
 
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;

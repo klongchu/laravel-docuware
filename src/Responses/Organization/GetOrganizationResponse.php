@@ -1,10 +1,10 @@
 <?php
 
-namespace Klongchu\DocuWare\Responses\Organization;
+namespace CodebarAg\DocuWare\Responses\Organization;
 
-use Klongchu\DocuWare\DTO\Organization;
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
+use CodebarAg\DocuWare\DTO\Organization;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Support\EnsureValidResponse;
 use Saloon\Contracts\Response;
 
 final class GetOrganizationResponse

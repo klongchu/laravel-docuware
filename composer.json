@@ -1,15 +1,15 @@
 {
-  "name": "klongchu/laravel-docuware",
+  "name": "codebar-ag/laravel-docuware",
   "description": "DocuWare integration with Laravel",
   "keywords": [
     "laravel",
     "docuware",
-    "klongchu",
+    "codebar-ag",
     "laravel-docuware",
     "codebar Solutions AG",
     "Ricoh Schweiz AG"
   ],
-  "homepage": "https://github.com/klongchu/laravel-docuware",
+  "homepage": "https://github.com/codebar-ag/laravel-docuware",
   "license": "MIT",
   "authors": [
     {
@@ -45,12 +45,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Klongchu\\DocuWare\\": "src"
+      "CodebarAg\\DocuWare\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Klongchu\\DocuWare\\Tests\\": "tests"
+      "CodebarAg\\DocuWare\\Tests\\": "tests"
     }
   },
   "scripts": {
@@ -71,10 +71,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Klongchu\\DocuWare\\DocuWareServiceProvider"
+        "CodebarAg\\DocuWare\\DocuWareServiceProvider"
       ],
       "aliases": {
-        "DocuWare": "Klongchu\\DocuWare\\Facades\\DocuWare"
+        "DocuWare": "CodebarAg\\DocuWare\\Facades\\DocuWare"
       }
     }
   },

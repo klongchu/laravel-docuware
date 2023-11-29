@@ -1,9 +1,9 @@
 <?php
 
-namespace Klongchu\DocuWare\Responses\SelectList;
+namespace CodebarAg\DocuWare\Responses\SelectList;
 
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Support\EnsureValidResponse;
 use Saloon\Contracts\Response;
 
 final class GetSelectListResponse

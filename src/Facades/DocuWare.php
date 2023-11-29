@@ -1,22 +1,22 @@
 <?php
 
-namespace Klongchu\DocuWare\Facades;
+namespace CodebarAg\DocuWare\Facades;
 
 use Carbon\Carbon;
-use Klongchu\DocuWare\DocuWareSearchRequestBuilder;
-use Klongchu\DocuWare\DocuWareUrl;
-use Klongchu\DocuWare\DTO\Dialog;
-use Klongchu\DocuWare\DTO\Document;
-use Klongchu\DocuWare\DTO\DocumentThumbnail;
-use Klongchu\DocuWare\DTO\Field;
-use Klongchu\DocuWare\DTO\FileCabinet;
-use Klongchu\DocuWare\DTO\Organization;
-use Klongchu\DocuWare\DTO\OrganizationIndex;
+use CodebarAg\DocuWare\DocuWareSearchRequestBuilder;
+use CodebarAg\DocuWare\DocuWareUrl;
+use CodebarAg\DocuWare\DTO\Dialog;
+use CodebarAg\DocuWare\DTO\Document;
+use CodebarAg\DocuWare\DTO\DocumentThumbnail;
+use CodebarAg\DocuWare\DTO\Field;
+use CodebarAg\DocuWare\DTO\FileCabinet;
+use CodebarAg\DocuWare\DTO\Organization;
+use CodebarAg\DocuWare\DTO\OrganizationIndex;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Klongchu\DocuWare\DocuWare
+ * @see \CodebarAg\DocuWare\DocuWare
  *
  * @method static self cookie()
  * @method static string login()
@@ -44,6 +44,6 @@ class DocuWare extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Klongchu\DocuWare\DocuWare::class;
+        return \CodebarAg\DocuWare\DocuWare::class;
     }
 }

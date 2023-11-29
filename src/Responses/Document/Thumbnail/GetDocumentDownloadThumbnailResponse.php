@@ -1,10 +1,10 @@
 <?php
 
-namespace Klongchu\DocuWare\Responses\Document\Thumbnail;
+namespace CodebarAg\DocuWare\Responses\Document\Thumbnail;
 
-use Klongchu\DocuWare\DTO\DocumentThumbnail;
-use Klongchu\DocuWare\Events\DocuWareResponseLog;
-use Klongchu\DocuWare\Support\EnsureValidResponse;
+use CodebarAg\DocuWare\DTO\DocumentThumbnail;
+use CodebarAg\DocuWare\Events\DocuWareResponseLog;
+use CodebarAg\DocuWare\Support\EnsureValidResponse;
 use Saloon\Contracts\Response;
 
 final class GetDocumentDownloadThumbnailResponse

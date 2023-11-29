@@ -1,8 +1,8 @@
 <?php
 
-namespace Klongchu\DocuWare\Requests\Sections;
+namespace CodebarAg\DocuWare\Requests\Sections;
 
-use Klongchu\DocuWare\Responses\Sections\GetSectionsResponse;
+use CodebarAg\DocuWare\Responses\Sections\GetSectionsResponse;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;

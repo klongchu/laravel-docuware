@@ -1,8 +1,8 @@
 <?php
 
-namespace Klongchu\DocuWare\Support;
+namespace CodebarAg\DocuWare\Support;
 
-use Klongchu\DocuWare\Exceptions\UnableToFindUrlCredential;
+use CodebarAg\DocuWare\Exceptions\UnableToFindUrlCredential;
 use GuzzleHttp\Cookie\CookieJar;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;

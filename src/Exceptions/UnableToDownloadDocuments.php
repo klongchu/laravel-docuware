@@ -1,6 +1,6 @@
 <?php
 
-namespace Klongchu\DocuWare\Exceptions;
+namespace CodebarAg\DocuWare\Exceptions;
 
 use RuntimeException;
 
