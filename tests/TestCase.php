@@ -2,8 +2,8 @@
 
 namespace Klongchu\DocuWare\Tests;
 
-use Klongchu\DocuWare\DocuWareServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Klongchu\DocuWare\DocuWareServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra

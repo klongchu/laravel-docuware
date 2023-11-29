@@ -1,11 +1,11 @@
 <?php
 
-use Klongchu\DocuWare\DocuWare;
-use Klongchu\DocuWare\Support\Auth;
-use Klongchu\DocuWare\Tests\TestCase;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Klongchu\DocuWare\DocuWare;
+use Klongchu\DocuWare\Support\Auth;
+use Klongchu\DocuWare\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
 
