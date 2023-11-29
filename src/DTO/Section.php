@@ -1,6 +1,6 @@
 <?php
 
-namespace CodebarAg\DocuWare\DTO;
+namespace Klongchu\DocuWare\DTO;
 
 class Section
 {

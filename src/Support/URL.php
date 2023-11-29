@@ -1,6 +1,6 @@
 <?php
 
-namespace CodebarAg\DocuWare\Support;
+namespace Klongchu\DocuWare\Support;
 
 use Illuminate\Support\Str;
 

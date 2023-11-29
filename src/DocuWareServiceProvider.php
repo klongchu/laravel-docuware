@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare;
+namespace Klongchu\DocuWare;
 
-use CodebarAg\DocuWare\Commands\ListAuthCookie;
+use Klongchu\DocuWare\Commands\ListAuthCookie;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

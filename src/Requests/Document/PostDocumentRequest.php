@@ -1,9 +1,9 @@
 <?php
 
-namespace CodebarAg\DocuWare\Requests\Document;
+namespace Klongchu\DocuWare\Requests\Document;
 
-use CodebarAg\DocuWare\DTO\DocumentIndex;
-use CodebarAg\DocuWare\Responses\Document\PostDocumentResponse;
+use Klongchu\DocuWare\DTO\DocumentIndex;
+use Klongchu\DocuWare\Responses\Document\PostDocumentResponse;
 use Illuminate\Support\Collection;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Contracts\Response;

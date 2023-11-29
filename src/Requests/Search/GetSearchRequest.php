@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare\Requests\Search;
+namespace Klongchu\DocuWare\Requests\Search;
 
-use CodebarAg\DocuWare\Responses\Search\GetSearchResponse;
+use Klongchu\DocuWare\Responses\Search\GetSearchResponse;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;

@@ -1,14 +1,14 @@
 <?php
 
-namespace CodebarAg\DocuWare;
+namespace Klongchu\DocuWare;
 
 use Carbon\Carbon;
-use CodebarAg\DocuWare\DTO\DocumentPaginator;
-use CodebarAg\DocuWare\Events\DocuWareResponseLog;
-use CodebarAg\DocuWare\Exceptions\UnableToSearch;
-use CodebarAg\DocuWare\Support\Auth;
-use CodebarAg\DocuWare\Support\EnsureValidCookie;
-use CodebarAg\DocuWare\Support\EnsureValidResponse;
+use Klongchu\DocuWare\DTO\DocumentPaginator;
+use Klongchu\DocuWare\Events\DocuWareResponseLog;
+use Klongchu\DocuWare\Exceptions\UnableToSearch;
+use Klongchu\DocuWare\Support\Auth;
+use Klongchu\DocuWare\Support\EnsureValidCookie;
+use Klongchu\DocuWare\Support\EnsureValidResponse;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;

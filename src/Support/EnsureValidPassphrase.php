@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare\Support;
+namespace Klongchu\DocuWare\Support;
 
-use CodebarAg\DocuWare\Exceptions\UnableToFindPassphrase;
+use Klongchu\DocuWare\Exceptions\UnableToFindPassphrase;
 
 class EnsureValidPassphrase
 {

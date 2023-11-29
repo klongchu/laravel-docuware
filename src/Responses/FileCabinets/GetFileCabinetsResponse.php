@@ -1,10 +1,10 @@
 <?php
 
-namespace CodebarAg\DocuWare\Responses\FileCabinets;
+namespace Klongchu\DocuWare\Responses\FileCabinets;
 
-use CodebarAg\DocuWare\DTO\FileCabinet;
-use CodebarAg\DocuWare\Events\DocuWareResponseLog;
-use CodebarAg\DocuWare\Support\EnsureValidResponse;
+use Klongchu\DocuWare\DTO\FileCabinet;
+use Klongchu\DocuWare\Events\DocuWareResponseLog;
+use Klongchu\DocuWare\Support\EnsureValidResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
 use Saloon\Contracts\Response;

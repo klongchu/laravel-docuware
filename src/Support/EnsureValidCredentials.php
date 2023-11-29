@@ -1,10 +1,10 @@
 <?php
 
-namespace CodebarAg\DocuWare\Support;
+namespace Klongchu\DocuWare\Support;
 
-use CodebarAg\DocuWare\Exceptions\UnableToFindPasswordCredential;
-use CodebarAg\DocuWare\Exceptions\UnableToFindUrlCredential;
-use CodebarAg\DocuWare\Exceptions\UnableToFindUserCredential;
+use Klongchu\DocuWare\Exceptions\UnableToFindPasswordCredential;
+use Klongchu\DocuWare\Exceptions\UnableToFindUrlCredential;
+use Klongchu\DocuWare\Exceptions\UnableToFindUserCredential;
 
 class EnsureValidCredentials
 {

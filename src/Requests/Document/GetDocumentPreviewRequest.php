@@ -1,8 +1,8 @@
 <?php
 
-namespace CodebarAg\DocuWare\Requests\Document;
+namespace Klongchu\DocuWare\Requests\Document;
 
-use CodebarAg\DocuWare\Responses\Document\GetDocumentPreviewResponse;
+use Klongchu\DocuWare\Responses\Document\GetDocumentPreviewResponse;
 use Illuminate\Support\Facades\Cache;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;

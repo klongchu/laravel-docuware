@@ -1,9 +1,9 @@
 <?php
 
-namespace CodebarAg\DocuWare\Requests\Document;
+namespace Klongchu\DocuWare\Requests\Document;
 
-use CodebarAg\DocuWare\Exceptions\UnableToUpdateFields;
-use CodebarAg\DocuWare\Responses\Document\PutDocumentFieldsResponse;
+use Klongchu\DocuWare\Exceptions\UnableToUpdateFields;
+use Klongchu\DocuWare\Responses\Document\PutDocumentFieldsResponse;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Contracts\Response;
 use Saloon\Enums\Method;
