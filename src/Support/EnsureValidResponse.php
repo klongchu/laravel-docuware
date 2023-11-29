@@ -2,9 +2,9 @@
 
 namespace Klongchu\DocuWare\Support;
 
+use Illuminate\Http\Client\Response;
 use Klongchu\DocuWare\Exceptions\UnableToMakeRequest;
 use Klongchu\DocuWare\Exceptions\UnableToProcessRequest;
-use Illuminate\Http\Client\Response;
 use Saloon\Contracts\Response as SaloonContracts;
 use Saloon\Http\Response as SaloonResponse;
 use Symfony\Component\HttpFoundation\Response as Status;

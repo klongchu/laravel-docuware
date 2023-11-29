@@ -2,8 +2,8 @@
 
 namespace Klongchu\DocuWare\Requests\Fields;
 
-use Klongchu\DocuWare\Responses\Fields\GetFieldsResponse;
 use Illuminate\Support\Facades\Cache;
+use Klongchu\DocuWare\Responses\Fields\GetFieldsResponse;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
 use Saloon\CachePlugin\Traits\HasCaching;

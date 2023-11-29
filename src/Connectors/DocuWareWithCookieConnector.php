@@ -2,8 +2,8 @@
 
 namespace Klongchu\DocuWare\Connectors;
 
-use Klongchu\DocuWare\Support\Auth;
 use GuzzleHttp\Cookie\CookieJar;
+use Klongchu\DocuWare\Support\Auth;
 use Saloon\Http\Connector;
 
 class DocuWareWithCookieConnector extends Connector

@@ -3,9 +3,9 @@
 namespace Klongchu\DocuWare;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Klongchu\DocuWare\Exceptions\UnableToSearch;
 use Klongchu\DocuWare\Requests\Search\GetSearchRequest;
-use Illuminate\Support\Str;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
 

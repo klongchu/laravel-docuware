@@ -2,10 +2,10 @@
 
 namespace Klongchu\DocuWare\Responses\Document;
 
+use Illuminate\Support\Collection;
 use Klongchu\DocuWare\DTO\Document;
 use Klongchu\DocuWare\Events\DocuWareResponseLog;
 use Klongchu\DocuWare\Support\EnsureValidResponse;
-use Illuminate\Support\Collection;
 use Saloon\Contracts\Response;
 
 final class GetDocumentsResponse

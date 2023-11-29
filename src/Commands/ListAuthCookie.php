@@ -2,9 +2,9 @@
 
 namespace Klongchu\DocuWare\Commands;
 
-use Klongchu\DocuWare\Support\Auth;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
+use Klongchu\DocuWare\Support\Auth;
 
 class ListAuthCookie extends Command
 {

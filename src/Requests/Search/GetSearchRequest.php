@@ -2,8 +2,8 @@
 
 namespace Klongchu\DocuWare\Requests\Search;
 
-use Klongchu\DocuWare\Responses\Search\GetSearchResponse;
 use Illuminate\Support\Facades\Cache;
+use Klongchu\DocuWare\Responses\Search\GetSearchResponse;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
 use Saloon\CachePlugin\Traits\HasCaching;

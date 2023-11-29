@@ -2,12 +2,12 @@
 
 namespace Klongchu\DocuWare\Support;
 
+use GuzzleHttp\Cookie\CookieJar;
 use Klongchu\DocuWare\Events\DocuWareCookieCreatedLog;
 use Klongchu\DocuWare\Events\DocuWareResponseLog;
 use Klongchu\DocuWare\Exceptions\UnableToLogin;
 use Klongchu\DocuWare\Exceptions\UnableToLoginNoCookies;
 use Klongchu\DocuWare\Requests\Auth\PostLogonRequest;
-use GuzzleHttp\Cookie\CookieJar;
 use Symfony\Component\HttpFoundation\Response;
 
 class EnsureValidCookie

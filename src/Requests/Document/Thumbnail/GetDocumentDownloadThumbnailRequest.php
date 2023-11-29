@@ -2,8 +2,8 @@
 
 namespace Klongchu\DocuWare\Requests\Document\Thumbnail;
 
-use Klongchu\DocuWare\Responses\Document\Thumbnail\GetDocumentDownloadThumbnailResponse;
 use Illuminate\Support\Facades\Cache;
+use Klongchu\DocuWare\Responses\Document\Thumbnail\GetDocumentDownloadThumbnailResponse;
 use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
 use Saloon\CachePlugin\Traits\HasCaching;
