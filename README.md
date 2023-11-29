@@ -50,7 +50,7 @@ then optimize the processes that power the core of your business.
 You can install the package via composer:
 
 ```bash
-composer require codebar-ag/laravel-docuware
+composer require klongchu/laravel-docuware
 ```
 
 Add the following environment variables to your `.env` file:
