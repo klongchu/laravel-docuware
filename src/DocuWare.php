@@ -2,6 +2,7 @@
 
 namespace Klongchu\DocuWare;
 
+use Illuminate\Support\Facades\Http;
 use Klongchu\DocuWare\Events\DocuWareResponseLog;
 use Klongchu\DocuWare\Requests\Auth\GetLogoffRequest;
 use Klongchu\DocuWare\Support\Auth;
@@ -10,8 +11,6 @@ use Klongchu\DocuWare\Support\EnsureValidCredentials;
 use Klongchu\DocuWare\Support\EnsureValidResponse;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
-use Illuminate\Support\Facades\Http;
-
 
 class DocuWare
 {
