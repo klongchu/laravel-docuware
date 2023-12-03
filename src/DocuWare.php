@@ -7,8 +7,11 @@ use Klongchu\DocuWare\Requests\Auth\GetLogoffRequest;
 use Klongchu\DocuWare\Support\Auth;
 use Klongchu\DocuWare\Support\EnsureValidCookie;
 use Klongchu\DocuWare\Support\EnsureValidCredentials;
+use Klongchu\DocuWare\Support\EnsureValidResponse;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
+use Illuminate\Support\Facades\Http;
+
 
 class DocuWare
 {
@@ -54,5 +57,56 @@ class DocuWare
     public function url(): DocuWareUrl
     {
         return new DocuWareUrl();
+    }
+
+    public function getDocumentImage(
+        string $fileCabinetId,
+        string $documentId,
+        int $page,
+    ): string {
+        EnsureValidCookie::check();
+
+        $url = sprintf(
+            '%s/DocuWare/Platform/FileCabinets/%s/Rendering/%s/Image?page=%s&v=%s',
+            config('docuware.credentials.url'),
+            $fileCabinetId,
+            $documentId,
+            $page,
+            md5($documentId.''.$page),
+        );
+
+        $response = Http::acceptJson()
+            ->withCookies(Auth::cookies(), Auth::domain())
+            ->get($url);
+
+        event(new DocuWareResponseLog($response));
+
+        EnsureValidResponse::from($response);
+
+        return $response->throw()->body();
+    }
+
+    public function getDocumentThumbnail(
+        string $fileCabinetId,
+        int $documentId,
+    ): string {
+        EnsureValidCookie::check();
+
+        $url = sprintf(
+            '%s/DocuWare/Platform/FileCabinets/%s/Documents/%s/Thumbnail?v=0&annotations=False',
+            config('docuware.credentials.url'),
+            $fileCabinetId,
+            $documentId,
+        );
+
+        $response = Http::acceptJson()
+            ->withCookies(Auth::cookies(), Auth::domain())
+            ->get($url);
+
+        event(new DocuWareResponseLog($response));
+
+        EnsureValidResponse::from($response);
+
+        return $response->throw()->body();
     }
 }
