@@ -26,7 +26,7 @@
   "require": {
     "php": "^8.2",
     "guzzlehttp/guzzle": "^7.5",
-    "illuminate/contracts": "^9.0|^10.0",
+    "illuminate/contracts": "^9.0|^10.0|^11.0",
     "nesbot/carbon": "^2.64.0",
     "saloonphp/cache-plugin": "^2.0",
     "saloonphp/saloon": "^2.0",
