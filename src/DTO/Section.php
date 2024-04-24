@@ -19,8 +19,8 @@ class Section
     }
 
     public static function fake(
-        string $doc_id = null,
-        int $page_count = null,
+        ?string $doc_id = null,
+        ?int $page_count = null,
     ): self {
         return new static(
             id: $doc_id ?? '',
