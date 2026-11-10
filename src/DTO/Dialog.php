@@ -24,8 +24,7 @@ final class Dialog
         public string $label,
         public bool $isDefault,
         public string $fileCabinetId,
-    ) {
-    }
+    ) {}
 
     public function isSearch(): bool
     {

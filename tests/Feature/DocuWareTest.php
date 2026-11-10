@@ -21,7 +21,7 @@ uses()->group('docuware');
 it('can list file cabinets', function () {
     Event::fake();
 
-    $fileCabinets = (new DocuWare())->getFileCabinets();
+    $fileCabinets = (new DocuWare)->getFileCabinets();
 
     $this->assertInstanceOf(Collection::class, $fileCabinets);
     $this->assertNotCount(0, $fileCabinets);
@@ -33,7 +33,7 @@ it('can list fields for a file cabinet', function () {
 
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
 
-    $fields = (new DocuWare())->getFields($fileCabinetId);
+    $fields = (new DocuWare)->getFields($fileCabinetId);
 
     $this->assertInstanceOf(Collection::class, $fields);
     $this->assertNotCount(0, $fields);
@@ -47,7 +47,7 @@ it('can list values for a select list', function () {
     $dialogId = config('docuware.tests.dialog_id');
     $fieldName = 'UUID';
 
-    $types = (new DocuWare())->getSelectList(
+    $types = (new DocuWare)->getSelectList(
         $fileCabinetId,
         $dialogId,
         $fieldName,
@@ -62,7 +62,7 @@ it('can list dialogs for a file cabinet', function () {
 
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
 
-    $dialogs = (new DocuWare())->getDialogs($fileCabinetId);
+    $dialogs = (new DocuWare)->getDialogs($fileCabinetId);
 
     $this->assertInstanceOf(Collection::class, $dialogs);
     $this->assertNotCount(0, $dialogs);
@@ -75,7 +75,7 @@ it('can preview a document image', function () {
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $documentId = config('docuware.tests.document_id');
 
-    $image = (new DocuWare())->getDocumentPreview(
+    $image = (new DocuWare)->getDocumentPreview(
         $fileCabinetId,
         $documentId,
     );
@@ -90,7 +90,7 @@ it('can show a document', function () {
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $documentId = config('docuware.tests.document_id');
 
-    $document = (new DocuWare())->getDocument(
+    $document = (new DocuWare)->getDocument(
         $fileCabinetId,
         $documentId,
     );
@@ -109,7 +109,7 @@ it('can update a document value', function () {
     $fieldName = config('docuware.tests.field_name');
     $newValue = 'laravel-docuware';
 
-    $response = (new DocuWare())->updateDocumentValue(
+    $response = (new DocuWare)->updateDocumentValue(
         $fileCabinetId,
         $documentId,
         $fieldName,
@@ -126,7 +126,7 @@ it('can download multiple documents', function () {
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $documentIds = config('docuware.tests.document_ids');
 
-    $contents = (new DocuWare())->downloadDocuments(
+    $contents = (new DocuWare)->downloadDocuments(
         $fileCabinetId,
         $documentIds,
     );
@@ -141,7 +141,7 @@ it('can download a document', function () {
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $documentId = config('docuware.tests.document_id');
 
-    $contents = (new DocuWare())->downloadDocument(
+    $contents = (new DocuWare)->downloadDocument(
         $fileCabinetId,
         $documentId,
     );
@@ -156,7 +156,7 @@ it('can search documents', function () {
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $dialogId = config('docuware.tests.dialog_id');
 
-    $paginator = (new DocuWare())
+    $paginator = (new DocuWare)
         ->search()
         ->fileCabinet($fileCabinetId)
         ->dialog($dialogId)
@@ -181,7 +181,7 @@ it('can\'t search documents by more than two dates', function () {
 
     $this->expectException(UnableToSearch::class);
 
-    (new DocuWare())
+    (new DocuWare)
         ->search()
         ->fileCabinet($fileCabinetId)
         ->dialog($dialogId)
@@ -202,7 +202,7 @@ it('can override search documents dates filter by using same operator', function
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $dialogId = config('docuware.tests.dialog_id');
 
-    $paginator = (new DocuWare())
+    $paginator = (new DocuWare)
         ->search()
         ->fileCabinet($fileCabinetId)
         ->dialog($dialogId)
@@ -226,7 +226,7 @@ it('can override search documents dates filter by using equal operator', functio
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $dialogId = config('docuware.tests.dialog_id');
 
-    $paginator = (new DocuWare())
+    $paginator = (new DocuWare)
         ->search()
         ->fileCabinet($fileCabinetId)
         ->dialog($dialogId)
@@ -251,7 +251,7 @@ it('can\'t search documents by diverged date range', function () {
 
     $this->expectException(UnableToSearch::class);
 
-    (new DocuWare())
+    (new DocuWare)
         ->search()
         ->fileCabinet($fileCabinetId)
         ->dialog($dialogId)
@@ -271,7 +271,7 @@ it('can search documents dates filter in future', function () {
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $dialogId = config('docuware.tests.dialog_id');
 
-    $paginator = (new DocuWare())
+    $paginator = (new DocuWare)
         ->search()
         ->fileCabinet($fileCabinetId)
         ->dialog($dialogId)
@@ -293,7 +293,7 @@ it('can search documents dates filter in past', function () {
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $dialogId = config('docuware.tests.dialog_id');
 
-    $paginator = (new DocuWare())
+    $paginator = (new DocuWare)
         ->search()
         ->fileCabinet($fileCabinetId)
         ->dialog($dialogId)
@@ -316,7 +316,7 @@ it('can upload document with index values and delete it', function () {
     $fileContent = '::fake-file-content::';
     $fileName = 'example.txt';
 
-    $document = (new DocuWare())->uploadDocument(
+    $document = (new DocuWare)->uploadDocument(
         $fileCabinetId,
         $fileContent,
         $fileName,
@@ -324,7 +324,7 @@ it('can upload document with index values and delete it', function () {
             DocumentIndex::make('DOCUMENT_LABEL', '::text::'),
         ]),
     );
-    (new DocuWare())->deleteDocument($fileCabinetId, $document->id);
+    (new DocuWare)->deleteDocument($fileCabinetId, $document->id);
 
     $this->assertInstanceOf(Document::class, $document);
     $this->assertSame('example', $document->title);
@@ -342,7 +342,7 @@ it('can create encrypted url for a document in a file cabinet', function () {
     $fileCabinetId = config('docuware.tests.file_cabinet_id');
     $documentId = config('docuware.tests.document_id');
 
-    $url = (new DocuWare())
+    $url = (new DocuWare)
         ->url()
         ->fileCabinet($fileCabinetId)
         ->document($documentId)
@@ -367,7 +367,7 @@ it('can search documents with null values', function () {
         config('docuware.tests.file_cabinet_id'),
     ];
 
-    $paginator = (new DocuWare())
+    $paginator = (new DocuWare)
         ->search()
         ->fileCabinets($fileCabinetIds)
         ->page(null)
@@ -387,7 +387,7 @@ it('can create encrypted url for a document in a basket', function () {
     $basketId = config('docuware.tests.basket_id');
     $documentId = config('docuware.tests.document_id');
 
-    $url = (new DocuWare())
+    $url = (new DocuWare)
         ->url()
         ->basket($basketId)
         ->document($documentId)

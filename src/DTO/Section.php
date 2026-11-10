@@ -15,8 +15,7 @@ class Section
     public function __construct(
         public string $doc_id,
         public int $page_count
-    ) {
-    }
+    ) {}
 
     public static function fake(
         ?string $doc_id = null,

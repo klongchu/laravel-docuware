@@ -42,7 +42,7 @@ class ParseValue
         };
     }
 
-    public static function table(array $Item): Collection|null
+    public static function table(array $Item): ?Collection
     {
         return match ($Item['$type']) {
             'DocumentIndexFieldTable' => self::documentIndexFieldTable($Item['Row']),
@@ -50,7 +50,7 @@ class ParseValue
         };
     }
 
-    public static function documentIndexFieldTable(array $Row): Collection|null
+    public static function documentIndexFieldTable(array $Row): ?Collection
     {
         $rows = collect($Row);
 

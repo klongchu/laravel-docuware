@@ -12,6 +12,6 @@ class EnsureValidCookie
             return;
         }
 
-        (new DocuWare())->login();
+        (new DocuWare)->login();
     }
 }

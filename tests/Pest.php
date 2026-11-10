@@ -28,7 +28,7 @@ beforeAll(function () {
             return;
         }
 
-        (new DocuWare())->login();
+        (new DocuWare)->login();
 
         File::put($cookiePath, Auth::cookies()[Auth::COOKIE_NAME]);
     }
@@ -37,6 +37,6 @@ beforeAll(function () {
 afterAll(function () {
     if (File::exists(app_path('app/.dwplatformauth'))) {
         File::delete(app_path('app/.dwplatformauth'));
-        (new DocuWare())->logout();
+        (new DocuWare)->logout();
     }
 });

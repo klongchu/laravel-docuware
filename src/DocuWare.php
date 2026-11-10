@@ -388,12 +388,12 @@ class DocuWare
 
     public function search(): DocuWareSearch
     {
-        return new DocuWareSearch();
+        return new DocuWareSearch;
     }
 
     public function url(): DocuWareUrl
     {
-        return new DocuWareUrl();
+        return new DocuWareUrl;
     }
 
     public function getSections(
@@ -417,7 +417,8 @@ class DocuWare
 
         EnsureValidResponse::from($response);
         $data = $response->throw()->json();
-        //dd(Section::fromJson($data['Section'][0]));
+
+        // dd(Section::fromJson($data['Section'][0]));
         return Section::fromJson($data['Section'][0]);
     }
 
