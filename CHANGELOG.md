@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-docuware` will be documented in this file.
 
+## 1.1.6 - 2026-11-10
+### General
+- Support Laravel 11 and Laravel 12 alongside Laravel 9/10
+- Widened `illuminate/contracts` to `^9.0|^10.0|^11.0|^12.0`
+- Widened `nesbot/carbon` to `^2.64.0|^3.8`
+- No API or behaviour changes: same code as `1.1.5`, including the Budhosp additions
+  `getDocumentImage()`, `getDocumentThumbnail()` and `getSections()`
+
 ## 2.0.0 pre-release
 ### General
 - Dropped support below PHP 8.1
